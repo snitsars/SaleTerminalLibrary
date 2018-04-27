@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaleTerminalLibraryTests", "SaleTerminalLibraryTests\SaleTerminalLibraryTests.csproj", "{8EDF4429-251A-416D-BB68-93F227191BCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaleTerminalLibrary", "SaleTerminalLibrary\SaleTerminalLibrary.csproj", "{2A9C8F60-D58B-46A4-B6B7-170CDE5831C0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8EDF4429-251A-416D-BB68-93F227191BCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EDF4429-251A-416D-BB68-93F227191BCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EDF4429-251A-416D-BB68-93F227191BCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EDF4429-251A-416D-BB68-93F227191BCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A9C8F60-D58B-46A4-B6B7-170CDE5831C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A9C8F60-D58B-46A4-B6B7-170CDE5831C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A9C8F60-D58B-46A4-B6B7-170CDE5831C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A9C8F60-D58B-46A4-B6B7-170CDE5831C0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {98C3FD33-E742-40E1-9AC7-DD49245F61F8}
+	EndGlobalSection
+EndGlobal
