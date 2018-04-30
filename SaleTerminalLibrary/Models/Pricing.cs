@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using Epam.Demo.SaleTerminalLibrary.Common;
+﻿using Epam.Demo.SaleTerminalLibrary.Common;
 using Epam.Demo.SaleTerminalLibrary.Interfaces;
+using System.Collections.Generic;
 
 namespace Epam.Demo.SaleTerminalLibrary.Models
 {

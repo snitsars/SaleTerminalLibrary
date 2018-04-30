@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using Epam.Demo.SaleTerminalLibrary.Interfaces;
+﻿using Epam.Demo.SaleTerminalLibrary.Interfaces;
+using System;
 
 namespace Epam.Demo.SaleTerminalLibrary.Common
 {

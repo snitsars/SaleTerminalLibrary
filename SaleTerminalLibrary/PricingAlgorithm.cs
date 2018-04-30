@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Epam.Demo.SaleTerminalLibrary.Models;
+﻿using Epam.Demo.SaleTerminalLibrary.Models;
 
 namespace Epam.Demo.SaleTerminalLibrary
 {

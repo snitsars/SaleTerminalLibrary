@@ -1,11 +1,4 @@
 ﻿using NUnit.Framework;
-using Epam.Demo.SaleTerminalLibrary.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Epam.Demo.SaleTerminalLibrary.Interfaces;
 
 namespace Epam.Demo.SaleTerminalLibrary.Common.Tests
 {
