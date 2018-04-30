@@ -11,8 +11,8 @@ namespace Epam.Demo.SaleTerminalLibraryTests
         public void When_ProductSetABCDABA_Expected_TotallPrice13_25()
         {
             const double expected = 13.25;
-            SaleTerminal terminal = new SaleTerminal();
-            terminal.SetPricing();
+            PointOfSaleTerminal terminal = new PointOfSaleTerminal();
+            //terminal.SetPricing();
             terminal.Scan("A");
             terminal.Scan("B");
             terminal.Scan("C");

@@ -34,6 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CartTests.cs" />
+    <Compile Include="PricingTests.cs" />
     <Compile Include="SaleTerminalTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

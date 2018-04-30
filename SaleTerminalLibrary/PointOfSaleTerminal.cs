@@ -6,24 +6,29 @@ namespace Epam.Demo.SaleTerminalLibrary
     /// Class of point-of-sale that accepts an arbitrary ordering of products 
     /// and calculate summary price 
     /// </summary>
-    public class SaleTerminal
+    public class PointOfSaleTerminal
     {
+        private Cart productCart = new Cart();
+        private PricingAlgorithm priceAlgorithm;
+        private Pricing pricingValue;
+
+
         /// <summary>
         /// Method for set pricing of product 
         /// prices per unit and volume prices
         /// </summary>
-        public void SetPricing()
+        public Pricing SetPricing
         {
-            
+            set { pricingValue = value; }
         }
 
 
         /// <summary>
         /// Scan product method
         /// </summary>
-        public void Scan(string v)
+        public void Scan(string productCode)
         {
-            
+            productCart.AddProductItem(productCode);
         }
 
 
