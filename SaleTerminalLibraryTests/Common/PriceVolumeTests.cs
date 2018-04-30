@@ -12,7 +12,7 @@ namespace Epam.Demo.SaleTerminalLibrary.Common.Tests
             var priceInfo = new VolumePrice();
             priceInfo.MinimalCount = initialValue;
 
-            Assert.That(priceInfo.MinimalCount == initialValue);
+            Assert.That(priceInfo.MinimalCount, Is.EqualTo(initialValue));
         }
     }
 }

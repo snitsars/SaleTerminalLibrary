@@ -64,8 +64,8 @@ namespace Epam.Demo.SaleTerminalLibrary.Models
         /// <returns></returns>
         public IVolumePrice GetVolumePrice(string productCode)
         {
-            volumePrices.TryGetValue(productCode, out var pairResult);
-            return pairResult;
+            volumePrices.TryGetValue(productCode, out var result);
+            return result;
         }
 
 

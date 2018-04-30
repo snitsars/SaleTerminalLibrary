@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Epam.Demo.SaleTerminalLibrary.Interfaces;
 using Epam.Demo.SaleTerminalLibrary.Models;
 
 namespace Epam.Demo.SaleTerminalLibrary
@@ -10,15 +12,15 @@ namespace Epam.Demo.SaleTerminalLibrary
     public class PointOfSaleTerminal
     {
         private Cart productCart = new Cart();
-        private PricingAlgorithm priceAlgorithm;
-        private Pricing pricingValue;
+        private IPricingAlgorithm priceVolumeAlgorithm = new PricingVolumeAlgorithm();
+        private Pricing pricingValue = null;
 
 
         /// <summary>
         /// Method for set pricing of product 
         /// prices per unit and volume prices
         /// </summary>
-        public Pricing SetPricing
+        public Pricing PricesTable
         {
             set { pricingValue = value; }
         }
@@ -39,7 +41,12 @@ namespace Epam.Demo.SaleTerminalLibrary
         /// <returns></returns>
         public Double CalculateTotal()
         {
-            return 0;
+            double result = 0;
+            foreach (KeyValuePair<string, uint> product in productCart)
+            {
+                result += priceVolumeAlgorithm.Calculate(product.Key, product.Value, pricingValue);
+            }
+            return result;
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Epam.Demo.SaleTerminalLibrary.Common.Tests
                 Value = initialValue
             };
 
-            Assert.That(priceInfo == initialValue);
+            Assert.That(priceInfo, Is.EqualTo(initialValue));
         }
 
         [Test()]
@@ -34,7 +34,7 @@ namespace Epam.Demo.SaleTerminalLibrary.Common.Tests
             double compareValue = 5.10;
             var priceInfo = new Price();
             priceInfo.Value = initialValue;
-            Assert.That(priceInfo == compareValue);
+            Assert.That(priceInfo, Is.EqualTo(compareValue));
         }
 
         [Test()]
@@ -44,7 +44,7 @@ namespace Epam.Demo.SaleTerminalLibrary.Common.Tests
             double compareValue = 25.11;
             var priceInfo = new Price();
             priceInfo.Value = initialValue;
-            Assert.That(priceInfo != compareValue);
+            Assert.That(priceInfo, Is.Not.EqualTo(compareValue));
         }
     }
 }

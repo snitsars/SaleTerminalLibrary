@@ -9,7 +9,7 @@ namespace Epam.Demo.SaleTerminalLibrary.Models
     /// </summary>
     public class Cart : IEnumerable
     {
-        private Dictionary<string, int> products = new Dictionary<string, int>();
+        private Dictionary<string, uint> products = new Dictionary<string, uint>();
 
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Epam.Demo.SaleTerminalLibrary.Models
         /// <exception cref="KeyNotFoundException">When try to remove not exist product code </exception>
         public void RemoveProductItem(string productCode)
         {
-            if (products.TryGetValue(productCode, out int productCount))
+            if (products.ContainsKey(productCode))
             {
                 products[productCode]--;
                 if (products[productCode] <= 0)

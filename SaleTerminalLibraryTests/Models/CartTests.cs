@@ -15,14 +15,15 @@ namespace Epam.Demo.SaleTerminalLibraryTests.Models
 
             Cart cart = new Cart();
             cart.AddProductItem(expectedProductCode);
-            int productCount = 0;
+            uint productCount = 0;
             string productCode = "";
-            foreach (KeyValuePair<string, int> product in cart)
+            foreach (KeyValuePair<string, uint> product in cart)
             {
                 productCode = product.Key;
                 productCount = product.Value;
             }
-            Assert.That(productCode == expectedProductCode && productCount == expectedProductCount);
+            Assert.That(productCode, Is.EqualTo(expectedProductCode));
+            Assert.That(productCount, Is.EqualTo(expectedProductCount));
         }
 
         [Test()]
@@ -36,14 +37,15 @@ namespace Epam.Demo.SaleTerminalLibraryTests.Models
             cart.AddProductItem(expectedProductCode);
             cart.AddProductItem(expectedProductCode);
             cart.AddProductItem(expectedProductCode);
-            int productCount = 0;
+            uint productCount = 0;
             string productCode = "";
-            foreach (KeyValuePair<string, int> product in cart)
+            foreach (KeyValuePair<string, uint> product in cart)
             {
                 productCode = product.Key;
                 productCount = product.Value;
             }
-            Assert.That(productCode == expectedProductCode && productCount == expectedProductCount);
+            Assert.That(productCode, Is.EqualTo(expectedProductCode));
+            Assert.That(productCount, Is.EqualTo(expectedProductCount));
         }
 
         [Test()]
