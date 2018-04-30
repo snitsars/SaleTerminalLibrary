@@ -12,7 +12,10 @@ namespace Epam.Demo.SaleTerminalLibrary
     public class PointOfSaleTerminal
     {
         private Cart productCart = new Cart();
-        private IPricingAlgorithm priceVolumeAlgorithm = new PricingVolumeAlgorithm();
+        private IPricingAlgorithm priceVolumeAlgorithm = new PricingPackAlgorithm()
+        {
+            Accuracy = 0.01
+        };
         private Pricing pricingValue = null;
 
 

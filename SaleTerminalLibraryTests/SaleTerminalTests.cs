@@ -54,7 +54,7 @@ namespace Epam.Demo.SaleTerminalLibraryTests
             terminal.Scan("C");
 
             double result = terminal.CalculateTotal();
-            double difference = Math.Abs(result * .001);
+            double difference = Math.Abs(result * 0.001);
             Assert.That(Math.Abs(result - expected) <= difference);
         }
 

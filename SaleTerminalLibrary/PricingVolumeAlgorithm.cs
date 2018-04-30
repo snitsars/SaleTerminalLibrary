@@ -9,6 +9,8 @@ namespace Epam.Demo.SaleTerminalLibrary
     /// </summary>
     public class PricingVolumeAlgorithm : IPricingAlgorithm
     {
+        public double Accuracy { get; set; }
+
         /// <summary>
         /// Method for calculate price for products that can be order by volume prices
         /// </summary>

@@ -1,11 +1,6 @@
-﻿using NUnit.Framework;
-using Epam.Demo.SaleTerminalLibrary;
+﻿using Epam.Demo.SaleTerminalLibrary.Models;
+using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Epam.Demo.SaleTerminalLibrary.Models;
 
 namespace Epam.Demo.SaleTerminalLibrary.Tests
 {
@@ -19,9 +14,12 @@ namespace Epam.Demo.SaleTerminalLibrary.Tests
             Pricing pricing = new Pricing();
             pricing.SetPrice("A", 1.25);
 
-            PricingVolumeAlgorithm algorithm = new PricingVolumeAlgorithm();
+            PricingVolumeAlgorithm algorithm = new PricingVolumeAlgorithm()
+            {
+                Accuracy = 0.01
+            };
             double result = algorithm.Calculate("A", 3, pricing);
-            double difference = Math.Abs(result * 0.01);
+            double difference = Math.Abs(result * algorithm.Accuracy);
 
             Assert.That(Math.Abs(result - expected), Is.LessThanOrEqualTo(difference));
         }
@@ -34,9 +32,12 @@ namespace Epam.Demo.SaleTerminalLibrary.Tests
             pricing.SetPrice("B", 1.00);
             pricing.SetVolumePrice("B", 1.2, 6);
 
-            PricingVolumeAlgorithm algorithm = new PricingVolumeAlgorithm();
+            PricingVolumeAlgorithm algorithm = new PricingVolumeAlgorithm()
+            {
+                Accuracy = 0.01
+            };
             double result = algorithm.Calculate("B", 11, pricing);
-            double difference = Math.Abs(result * 0.01);
+            double difference = Math.Abs(result * algorithm.Accuracy);
 
             Assert.That(Math.Abs(result - expected), Is.LessThanOrEqualTo(difference));
         }
@@ -49,9 +50,12 @@ namespace Epam.Demo.SaleTerminalLibrary.Tests
             pricing.SetPrice("B", 1.00);
             pricing.SetVolumePrice("B", 1.2, 100);
 
-            PricingVolumeAlgorithm algorithm = new PricingVolumeAlgorithm();
+            PricingVolumeAlgorithm algorithm = new PricingVolumeAlgorithm()
+            {
+                Accuracy = 0.01
+            };
             double result = algorithm.Calculate("B", 11, pricing);
-            double difference = Math.Abs(result * 0.01);
+            double difference = Math.Abs(result * algorithm.Accuracy);
 
             Assert.That(Math.Abs(result - expected), Is.LessThanOrEqualTo(difference));
         }

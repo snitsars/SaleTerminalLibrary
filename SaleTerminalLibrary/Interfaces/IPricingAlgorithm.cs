@@ -7,6 +7,7 @@ namespace Epam.Demo.SaleTerminalLibrary.Interfaces
     /// </summary>
     public interface IPricingAlgorithm
     {
+        double Accuracy { get; set; }
         double Calculate(string productCode, uint productCount, Pricing pricing);
     }
 }
