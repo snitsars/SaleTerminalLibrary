@@ -1,4 +1,6 @@
-﻿namespace Epam.Demo.SaleTerminalLibrary
+﻿using Epam.Demo.SaleTerminalLibrary.Models;
+
+namespace Epam.Demo.SaleTerminalLibrary
 {
     public class PricingAlgorithm
     {

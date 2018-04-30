@@ -1,4 +1,5 @@
 ﻿using System;
+using Epam.Demo.SaleTerminalLibrary.Models;
 
 namespace Epam.Demo.SaleTerminalLibrary
 {
