@@ -41,7 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\VolumePrice.cs" />
+    <Compile Include="Interfaces\IPrice.cs" />
+    <Compile Include="Interfaces\IVolumePrice.cs" />
     <Compile Include="Models\Cart.cs" />
+    <Compile Include="Common\Price.cs" />
     <Compile Include="Models\Pricing.cs" />
     <Compile Include="PricingAlgorithm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

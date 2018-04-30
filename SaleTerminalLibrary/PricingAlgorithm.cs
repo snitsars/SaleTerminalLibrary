@@ -1,4 +1,5 @@
-﻿using Epam.Demo.SaleTerminalLibrary.Models;
+﻿using System.Collections.Generic;
+using Epam.Demo.SaleTerminalLibrary.Models;
 
 namespace Epam.Demo.SaleTerminalLibrary
 {
@@ -6,6 +7,12 @@ namespace Epam.Demo.SaleTerminalLibrary
     {
         double Calculate(string productCode, int productCount, Pricing pricing)
         {
+            var volumePriceInfo = pricing.GetVolumePrice(productCode);
+            /*if (volumePriceInfo != null)
+            {
+                
+            }
+            pricing.GetPrice()*/
             return 0;
         }
     }

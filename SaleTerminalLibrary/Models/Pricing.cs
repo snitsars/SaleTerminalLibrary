@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using Epam.Demo.SaleTerminalLibrary.Common;
+using Epam.Demo.SaleTerminalLibrary.Interfaces;
 
 namespace Epam.Demo.SaleTerminalLibrary.Models
 {
@@ -7,8 +11,8 @@ namespace Epam.Demo.SaleTerminalLibrary.Models
     /// </summary>
     public class Pricing
     {
-        private Dictionary<string, double> prices = new Dictionary<string, double>();
-        private Dictionary<string, KeyValuePair<double, int>> volumePrices = new Dictionary<string, KeyValuePair<double, int>>();
+        private Dictionary<string, IPrice> prices = new Dictionary<string, IPrice>();
+        private Dictionary<string, IVolumePrice> volumePrices = new Dictionary<string, IVolumePrice>();
 
 
         /// <summary>
@@ -20,11 +24,12 @@ namespace Epam.Demo.SaleTerminalLibrary.Models
         {
             if (prices.ContainsKey(productCode))
             {
-                prices[productCode] = productPrice;
+                prices[productCode].Value = productPrice;
             }
             else
             {
-                prices.Add(productCode, productPrice);
+                Price productPriceInfo = new Price {Value = productPrice};
+                prices.Add(productCode, productPriceInfo);
             }
         }
 
@@ -35,16 +40,21 @@ namespace Epam.Demo.SaleTerminalLibrary.Models
         /// <param name="productCode"></param>
         /// <param name="productVolumePrice"></param>
         /// <param name="minimalVolume"></param>
-        public void SetVolumePrice(string productCode, double productVolumePrice, int minimalVolume)
+        public void SetVolumePrice(string productCode, double productVolumePrice, uint minimalVolume)
         {
+            var productPriceInfo = new VolumePrice
+            {
+                Value = productVolumePrice,
+                MinimalCount = minimalVolume
+            };
+
             if (volumePrices.ContainsKey(productCode))
             {
-                var productInfo = new KeyValuePair<double, int>(productVolumePrice, minimalVolume);
-                volumePrices[productCode] = productInfo;
+                volumePrices[productCode] = productPriceInfo;
             }
             else
             {
-                volumePrices.Add(productCode, new KeyValuePair<double, int>(productVolumePrice, minimalVolume));
+                volumePrices.Add(productCode, productPriceInfo);
             }
         }
 
@@ -54,7 +64,7 @@ namespace Epam.Demo.SaleTerminalLibrary.Models
         /// </summary>
         /// <param name="productCode"></param>
         /// <returns></returns>
-        public KeyValuePair<double, int> GetVolumePrice(string productCode)
+        public IVolumePrice GetVolumePrice(string productCode)
         {
             volumePrices.TryGetValue(productCode, out var pairResult);
             return pairResult;
@@ -68,9 +78,9 @@ namespace Epam.Demo.SaleTerminalLibrary.Models
         /// <returns></returns>
         public double? GetPrice(string productCode)
         {
-            if (prices.TryGetValue(productCode, out var price))
+            if (prices.TryGetValue(productCode, out var priceInfo))
             {
-                return price;
+                return priceInfo.Value;
             }
             return null;
         }

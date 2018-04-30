@@ -1,13 +1,7 @@
-﻿using NUnit.Framework;
-using Epam.Demo.SaleTerminalLibrary;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Epam.Demo.SaleTerminalLibrary.Models;
+﻿using Epam.Demo.SaleTerminalLibrary.Models;
+using NUnit.Framework;
 
-namespace Epam.Demo.SaleTerminalLibrary.Tests
+namespace Epam.Demo.SaleTerminalLibraryTests.Models
 {
     [TestFixture()]
     public class PricingTests
@@ -40,7 +34,7 @@ namespace Epam.Demo.SaleTerminalLibrary.Tests
             double initialVolumePrice = 10.0;
             Pricing pricing = new Pricing();
             pricing.SetVolumePrice("A", initialVolumePrice, 3);
-            Assert.That(pricing.GetVolumePrice("A").Key == initialVolumePrice);
+            Assert.That(pricing.GetVolumePrice("A").Value == initialVolumePrice);
         }
 
 
@@ -52,7 +46,32 @@ namespace Epam.Demo.SaleTerminalLibrary.Tests
             Pricing pricing = new Pricing();
             pricing.SetVolumePrice("A", initialVolumePrice, 3);
             pricing.SetVolumePrice("A", expectedVolumePrice, 3);
-            Assert.That(pricing.GetVolumePrice("A").Key == expectedVolumePrice);
+            Assert.That(pricing.GetVolumePrice("A").Value == expectedVolumePrice);
+        }
+
+        [Test()]
+        public void When_GetPriceForNotExistProduct_Expected_nullInResult()
+        {
+            double initialPrice = 9.99;
+            string initialProduct = "Tort";
+            Pricing pricing = new Pricing();
+            pricing.SetPrice(initialProduct, initialPrice);
+
+            var productPrice = pricing.GetPrice("D");
+            Assert.That(productPrice == null);
+        }
+
+        [Test()]
+        public void When_GetVolumePriceForNotExistProduct_Expected_nullInResult()
+        {
+            double initialVolumePrice = 8.99;
+            uint initialMinimalCount = 5;
+            string initialProduct = "Tort";
+            Pricing pricing = new Pricing();
+            pricing.SetVolumePrice(initialProduct, initialVolumePrice, initialMinimalCount);
+
+            var productPrice = pricing.GetVolumePrice("D");
+            Assert.That(productPrice == null);
         }
     }
 }
