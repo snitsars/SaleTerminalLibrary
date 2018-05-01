@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Epam.Demo.SaleTerminalLibrary.Interfaces;
 
 namespace Epam.Demo.SaleTerminalLibrary.Models
 {
@@ -7,7 +8,7 @@ namespace Epam.Demo.SaleTerminalLibrary.Models
     /// <summary>
     /// Class for save products that scaned and ready to sale
     /// </summary>
-    public class Cart : IEnumerable
+    public class Cart : ICart
     {
         private readonly Dictionary<string, uint> products = new Dictionary<string, uint>();
 

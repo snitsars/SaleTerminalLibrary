@@ -14,7 +14,7 @@ namespace Epam.Demo.SaleTerminalLibrary
     {
         private byte optionSignAfterPoint = 2;
 
-        private readonly Cart productCart = new Cart();
+        private readonly ICart productCart = new Cart();
         private readonly IPricingAlgorithm totalPriceCalculator = new PricingPackAlgorithm();
         private IPricing pricingValue;
 
