@@ -1,4 +1,4 @@
-﻿namespace Epam.Demo.SaleTerminalLibrary
+﻿namespace Epam.Demo.SaleTerminalLibrary.Interfaces
 {
     public interface IPointOfSaleTerminal
     {
