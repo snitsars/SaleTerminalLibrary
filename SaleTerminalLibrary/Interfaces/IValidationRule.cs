@@ -5,6 +5,6 @@
     /// </summary>
     public interface IValidationRule
     {
-        bool Validate(decimal value);
+        bool IsValid(decimal value);
     }
 }

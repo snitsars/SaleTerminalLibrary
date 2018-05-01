@@ -1,5 +1,4 @@
-﻿using System;
-using Epam.Demo.SaleTerminalLibrary.Interfaces;
+﻿using Epam.Demo.SaleTerminalLibrary.Interfaces;
 
 namespace Epam.Demo.SaleTerminalLibrary.Common
 {
@@ -15,7 +14,7 @@ namespace Epam.Demo.SaleTerminalLibrary.Common
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public bool Validate(decimal value)
+        public bool IsValid(decimal value)
         {
             return value >= 0;
         }
