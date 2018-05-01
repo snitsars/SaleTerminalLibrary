@@ -82,5 +82,16 @@ namespace Epam.Demo.SaleTerminalLibrary.Models
             }
             return null;
         }
+
+
+        /// <summary>
+        /// Determines whether the contains pricing the specified key 
+        /// </summary>
+        /// <param name="productCode"></param>
+        /// <returns></returns>
+        public bool ContainsKey(string productCode)
+        {
+            return prices.ContainsKey(productCode) || volumePrices.ContainsKey(productCode);
+        }
     }
 }

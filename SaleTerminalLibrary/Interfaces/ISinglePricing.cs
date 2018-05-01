@@ -1,6 +1,6 @@
 ﻿namespace Epam.Demo.SaleTerminalLibrary.Interfaces
 {
-    public interface ISinglePricing
+    public interface ISinglePricing: IBasePricing
     {
         /// <summary>
         /// Method for set price of product

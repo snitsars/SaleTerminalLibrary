@@ -1,5 +1,6 @@
 ﻿using Epam.Demo.SaleTerminalLibrary;
 using Epam.Demo.SaleTerminalLibrary.Interfaces;
+using Epam.Demo.SaleTerminalLibraryTests.Mocks;
 using NUnit.Framework;
 using Unity;
 

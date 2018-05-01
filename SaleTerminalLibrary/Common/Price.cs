@@ -8,22 +8,22 @@ namespace Epam.Demo.SaleTerminalLibrary.Common
     /// </summary>
     public class Price : IPrice
     {
-        private decimal priceValue;
+        private decimal value;
 
         /// <summary>
         /// Property for set/get price value
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException"> In case when we try to set value less than 0</exception>
-        public decimal Value
+        public virtual decimal Value
         {
-            get => priceValue;
+            get => value;
             set
             {
                 if(value <= 0)
                 { 
                     throw new ArgumentOutOfRangeException($"Price can't be less 0, but you try to set {value}");
                 }
-                priceValue = value;
+                this.value = value;
             }
         }
     }

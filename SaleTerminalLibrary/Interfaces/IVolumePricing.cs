@@ -1,6 +1,6 @@
 ﻿namespace Epam.Demo.SaleTerminalLibrary.Interfaces
 {
-    public interface IVolumePricing
+    public interface IVolumePricing: IBasePricing
     {
         /// <summary>
         /// Method for set volume price and minimal count of products

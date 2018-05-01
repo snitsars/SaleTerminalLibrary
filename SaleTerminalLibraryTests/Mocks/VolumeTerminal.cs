@@ -1,12 +1,13 @@
-﻿using Epam.Demo.SaleTerminalLibrary.Algorithms;
+﻿using Epam.Demo.SaleTerminalLibrary;
+using Epam.Demo.SaleTerminalLibrary.Algorithms;
 using Epam.Demo.SaleTerminalLibrary.Interfaces;
 using Epam.Demo.SaleTerminalLibrary.Models;
 using Unity;
 using Unity.Injection;
 
-namespace Epam.Demo.SaleTerminalLibrary
+namespace Epam.Demo.SaleTerminalLibraryTests.Mocks
 {
-    public class PackTerminal
+    public class VolumeTerminal
     {
         public static void RegisterElements(IUnityContainer container)
         {
@@ -21,7 +22,7 @@ namespace Epam.Demo.SaleTerminalLibrary
             container.RegisterInstance(pricesInformation);
 
             container.RegisterType<ICart, Cart>();
-            container.RegisterType<IPricingAlgorithm, PricingPackAlgorithm>();
+            container.RegisterType<IPricingAlgorithm, PricingVolumeAlgorithm>();
 
 
             var cartType = typeof(ICart);

@@ -18,7 +18,7 @@ namespace Epam.Demo.SaleTerminalLibrary.Algorithms
         /// <returns></returns>
         public decimal Calculate(string productCode, uint productCount, IPricing pricing)
         {
-            IPrice result = new Price();
+            var result = new Price();
 
             IVolumePrice volumePriceInfo = pricing.GetVolumePrice(productCode);
             decimal? singlePriceInfo = pricing.GetPrice(productCode);

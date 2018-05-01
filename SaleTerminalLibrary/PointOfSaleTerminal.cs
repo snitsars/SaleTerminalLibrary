@@ -1,9 +1,6 @@
-﻿using System;
+﻿using Epam.Demo.SaleTerminalLibrary.Interfaces;
+using System;
 using System.Collections.Generic;
-using Epam.Demo.SaleTerminalLibrary.Algorithms;
-using Epam.Demo.SaleTerminalLibrary.Interfaces;
-using Epam.Demo.SaleTerminalLibrary.Models;
-using Unity;
 
 namespace Epam.Demo.SaleTerminalLibrary
 {
@@ -13,43 +10,36 @@ namespace Epam.Demo.SaleTerminalLibrary
     /// </summary>
     public class PointOfSaleTerminal : IPointOfSaleTerminal
     {
-        private byte optionSignAfterPoint = 2;
+        private const byte OptionSignAfterPoint = 2;
 
-        private readonly ICart productCart;
-        private readonly IPricingAlgorithm totalPriceCalculator;
-        private IPricing pricesInformation;
+        private readonly ICart cart;
+        private readonly IPricingAlgorithm priceCalulationAlgorithm;
+        private readonly IPricing prices;
 
 
         /// <summary>
-        /// 
+        /// Constructor of terminal class
         /// </summary>
         /// <param name="cart"></param>
-        /// <param name="prices"></param>
+        /// <param name="prices">
         /// <param name="priceCalulationAlgorithm"></param>
         public PointOfSaleTerminal(ICart cart, IPricing prices, IPricingAlgorithm priceCalulationAlgorithm)
         {
-            pricesInformation = prices;
-            totalPriceCalculator = priceCalulationAlgorithm;
-            productCart = cart;
+            this.prices = prices;
+            this.priceCalulationAlgorithm = priceCalulationAlgorithm;
+            this.cart = cart;
         }
-
-
-        /// <summary>
-        /// Method for set pricing of product 
-        /// prices per unit and volume prices
-        /// </summary>
-        public Pricing PricesTable
-        {
-            set => pricesInformation = value;
-        }
-
 
         /// <summary>
         /// Scan product method
         /// </summary>
         public void Scan(string productCode)
         {
-            productCart.AddProductItem(productCode);
+            if (!prices.ContainsKey(productCode))
+            {
+                throw new KeyNotFoundException($"You are trying to scan product {productCode} missing in the pricing");
+            }
+            cart.AddProductItem(productCode);
         }
 
 
@@ -60,11 +50,11 @@ namespace Epam.Demo.SaleTerminalLibrary
         public decimal CalculateTotal()
         {
             decimal result = 0;
-            foreach (KeyValuePair<string, uint> product in productCart)
+            foreach (KeyValuePair<string, uint> product in cart)
             {
-                result += totalPriceCalculator.Calculate(product.Key, product.Value, pricesInformation);
+                result += priceCalulationAlgorithm.Calculate(product.Key, product.Value, prices);
             }
-            result = decimal.Round(result, optionSignAfterPoint, MidpointRounding.AwayFromZero);
+            result = decimal.Round(result, OptionSignAfterPoint, MidpointRounding.AwayFromZero);
 
             return result;
         }

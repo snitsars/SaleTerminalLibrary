@@ -1,5 +1,4 @@
-﻿using Epam.Demo.SaleTerminalLibrary.Interfaces;
-using Epam.Demo.SaleTerminalLibrary.Models;
+﻿using Epam.Demo.SaleTerminalLibrary.Models;
 using NUnit.Framework;
 
 namespace Epam.Demo.SaleTerminalLibraryTests.Models
@@ -73,6 +72,37 @@ namespace Epam.Demo.SaleTerminalLibraryTests.Models
 
             var productPrice = pricing.GetVolumePrice("D");
             Assert.That(productPrice, Is.Null);
+        }
+
+        [Test()]
+        public void When_PriceForProductExistInSingelPricing_Expected_True()
+        {
+            decimal initialPrice = 9.99m;
+            string initialProduct = "Tort";
+            Pricing pricing = new Pricing();
+            pricing.SetPrice(initialProduct, initialPrice);
+
+            Assert.That(true, Is.EqualTo(pricing.ContainsKey(initialProduct)));
+        }
+
+        [Test()]
+        public void When_PriceForProductExistInVolumePricing_Expected_True()
+        {
+            decimal initialPrice = 9.99m;
+            string initialProduct = "juice";
+            uint minimalVolume = 5;
+            Pricing pricing = new Pricing();
+            pricing.SetVolumePrice(initialProduct, initialPrice, minimalVolume);
+
+            Assert.That(true, Is.EqualTo(pricing.ContainsKey(initialProduct)));
+        }
+
+        [Test()]
+        public void When_PriceForProductMissingInVolumePricing_Expected_False()
+        {
+            Pricing pricing = new Pricing();
+
+            Assert.That(false, Is.EqualTo(pricing.ContainsKey("juice")));
         }
     }
 }
