@@ -11,11 +11,10 @@ namespace Epam.Demo.SaleTerminalLibrary
     /// </summary>
     public class PointOfSaleTerminal
     {
+        private byte optionSignAfterPoint = 2;
+
         private Cart productCart = new Cart();
-        private IPricingAlgorithm priceVolumeAlgorithm = new PricingPackAlgorithm()
-        {
-            Accuracy = 0.01
-        };
+        private IPricingAlgorithm priceVolumeAlgorithm = new PricingPackAlgorithm();
         private Pricing pricingValue = null;
 
 
@@ -42,13 +41,15 @@ namespace Epam.Demo.SaleTerminalLibrary
         /// Calculate price of all products entire shopping cart 
         /// </summary>
         /// <returns></returns>
-        public Double CalculateTotal()
+        public decimal CalculateTotal()
         {
-            double result = 0;
+            decimal result = 0;
             foreach (KeyValuePair<string, uint> product in productCart)
             {
                 result += priceVolumeAlgorithm.Calculate(product.Key, product.Value, pricingValue);
             }
+            result = decimal.Round(result, optionSignAfterPoint, MidpointRounding.AwayFromZero);
+
             return result;
         }
     }

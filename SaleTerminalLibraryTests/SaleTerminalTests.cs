@@ -11,16 +11,14 @@ namespace Epam.Demo.SaleTerminalLibraryTests
         [Test]
         public void When_ProductSetABCDABA_Expected_TotallPrice13_25()
         {
-            const double expected = 13.25;
+            const decimal expected = 13.25m;
             Pricing pricing = new Pricing();
-            pricing.SetPrice("A", 1.25);
-            pricing.SetVolumePrice("A", 1.00, 3);
-            pricing.SetPrice("B", 4.25);
-            pricing.SetPrice("C", 1.00);
-            pricing.SetVolumePrice("C", 0.833, 6);
-            pricing.SetPrice("D", 0.75);
-
-
+            pricing.SetPrice("A", 1.25m);
+            pricing.SetVolumePrice("A", 1.00m, 3);
+            pricing.SetPrice("B", 4.25m);
+            pricing.SetPrice("C", 1.00m);
+            pricing.SetVolumePrice("C", 0.833m, 6);
+            pricing.SetPrice("D", 0.75m);
             PointOfSaleTerminal terminal = new PointOfSaleTerminal();
             terminal.PricesTable = pricing;
             terminal.Scan("A");
@@ -30,7 +28,8 @@ namespace Epam.Demo.SaleTerminalLibraryTests
             terminal.Scan("A");
             terminal.Scan("B");
             terminal.Scan("A");
-            double result = terminal.CalculateTotal();
+
+            decimal result = terminal.CalculateTotal();
 
             Assert.That(result, Is.EqualTo(expected));
         }
@@ -38,11 +37,10 @@ namespace Epam.Demo.SaleTerminalLibraryTests
         [Test]
         public void When_ProductSetCCCCCCC_Expected_TotallPrice6_00()
         {
-            const double expected = 6.00;
+            const decimal expected = 6.00m;
             Pricing pricing = new Pricing();
-            pricing.SetPrice("C", 1.00);
-            pricing.SetVolumePrice("C", 0.833, 6);
-
+            pricing.SetPrice("C", 1.00m);
+            pricing.SetVolumePrice("C", 0.833m, 6);
             PointOfSaleTerminal terminal = new PointOfSaleTerminal();
             terminal.PricesTable = pricing;
             terminal.Scan("C");
@@ -53,31 +51,30 @@ namespace Epam.Demo.SaleTerminalLibraryTests
             terminal.Scan("C");
             terminal.Scan("C");
 
-            double result = terminal.CalculateTotal();
-            double difference = Math.Abs(result * 0.001);
-            Assert.That(Math.Abs(result - expected) <= difference);
+            decimal result = terminal.CalculateTotal();
+
+            Assert.That(expected, Is.EqualTo(result));
         }
 
         [Test]
         public void When_ProductSetABCD_Expected_TotallPrice7_25()
         {
-            const double expected = 7.25;
+            const decimal expected = 7.25m;
             Pricing pricing = new Pricing();
-            pricing.SetPrice("A", 1.25);
-            pricing.SetVolumePrice("A", 1.00, 3);
-            pricing.SetPrice("B", 4.25);
-            pricing.SetPrice("C", 1.00);
-            pricing.SetVolumePrice("C", 0.833, 6);
-            pricing.SetPrice("D", 0.75);
-
-
+            pricing.SetPrice("A", 1.25m);
+            pricing.SetVolumePrice("A", 1.00m, 3);
+            pricing.SetPrice("B", 4.25m);
+            pricing.SetPrice("C", 1.00m);
+            pricing.SetVolumePrice("C", 0.833m, 6);
+            pricing.SetPrice("D", 0.75m);
             PointOfSaleTerminal terminal = new PointOfSaleTerminal();
             terminal.PricesTable = pricing;
             terminal.Scan("A");
             terminal.Scan("B");
             terminal.Scan("C");
             terminal.Scan("D");
-            double result = terminal.CalculateTotal();
+
+            decimal result = terminal.CalculateTotal();
 
             Assert.That(result, Is.EqualTo(expected));
         }

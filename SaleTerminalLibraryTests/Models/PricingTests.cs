@@ -9,7 +9,7 @@ namespace Epam.Demo.SaleTerminalLibraryTests.Models
         [Test()]
         public void When_ProductPriceWasSet_Expected_GetThisPrice()
         {
-            double initialPrice = 10.5;
+            decimal initialPrice = 10.5m;
             Pricing pricing = new Pricing();
             pricing.SetPrice("A", initialPrice);
             Assert.That(pricing.GetPrice("A"), Is.EqualTo(initialPrice));
@@ -19,8 +19,8 @@ namespace Epam.Demo.SaleTerminalLibraryTests.Models
         [Test()]
         public void When_CallSetPriceForExistProduct_Expected_GetUpdatedPrice()
         {
-            double initialPrice = 12.5;
-            double expectedPrice = 18.9;
+            decimal initialPrice = 12.5m;
+            decimal expectedPrice = 18.9m;
             Pricing pricing = new Pricing();
             pricing.SetPrice("A", initialPrice);
             pricing.SetPrice("A", expectedPrice);
@@ -31,7 +31,7 @@ namespace Epam.Demo.SaleTerminalLibraryTests.Models
         [Test()]
         public void When_CallSetVolumePriceForNewProduct_Expected_GetThisVolumePrice()
         {
-            double initialVolumePrice = 10.0;
+            decimal initialVolumePrice = 10.0m;
             Pricing pricing = new Pricing();
             pricing.SetVolumePrice("A", initialVolumePrice, 3);
             Assert.That(pricing.GetVolumePrice("A").Value, Is.EqualTo(initialVolumePrice));
@@ -41,8 +41,8 @@ namespace Epam.Demo.SaleTerminalLibraryTests.Models
         [Test()]
         public void When_CallSetVolumePriceForExistingProduct_Expected_UpdateThisVolumePrice()
         {
-            double initialVolumePrice = 10.0;
-            double expectedVolumePrice = 15.7;
+            decimal initialVolumePrice = 10.0m;
+            decimal expectedVolumePrice = 15.7m;
             Pricing pricing = new Pricing();
             pricing.SetVolumePrice("A", initialVolumePrice, 3);
             pricing.SetVolumePrice("A", expectedVolumePrice, 3);
@@ -52,7 +52,7 @@ namespace Epam.Demo.SaleTerminalLibraryTests.Models
         [Test()]
         public void When_GetPriceForNotExistProduct_Expected_nullInResult()
         {
-            double initialPrice = 9.99;
+            decimal initialPrice = 9.99m;
             string initialProduct = "Tort";
             Pricing pricing = new Pricing();
             pricing.SetPrice(initialProduct, initialPrice);
@@ -64,7 +64,7 @@ namespace Epam.Demo.SaleTerminalLibraryTests.Models
         [Test()]
         public void When_GetVolumePriceForNotExistProduct_Expected_nullInResult()
         {
-            double initialVolumePrice = 8.99;
+            decimal initialVolumePrice = 8.99m;
             uint initialMinimalCount = 5;
             string initialProduct = "Tort";
             Pricing pricing = new Pricing();

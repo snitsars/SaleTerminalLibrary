@@ -9,8 +9,6 @@ namespace Epam.Demo.SaleTerminalLibrary
     /// </summary>
     public class PricingVolumeAlgorithm : IPricingAlgorithm
     {
-        public double Accuracy { get; set; }
-
         /// <summary>
         /// Method for calculate price for products that can be order by volume prices
         /// </summary>
@@ -18,12 +16,12 @@ namespace Epam.Demo.SaleTerminalLibrary
         /// <param name="productCount"></param>
         /// <param name="pricing"></param>
         /// <returns></returns>
-        public double Calculate(string productCode, uint productCount, Pricing pricing)
+        public decimal Calculate(string productCode, uint productCount, Pricing pricing)
         {
             IPrice result = new Price();
 
             IVolumePrice volumePriceInfo = pricing.GetVolumePrice(productCode);
-            double? singlePriceInfo = pricing.GetPrice(productCode);
+            decimal? singlePriceInfo = pricing.GetPrice(productCode);
 
             if (productCount >= volumePriceInfo?.MinimalCount)
             {

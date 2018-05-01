@@ -5,13 +5,13 @@ namespace Epam.Demo.SaleTerminalLibrary.Common
 {
     public class Price : IPrice
     {
-        private double priceValue;
+        private decimal priceValue;
 
         /// <summary>
         /// Property for set/get price value
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException"> In case when we try to set value less than 0</exception>
-        public double Value
+        public decimal Value
         {
             get => priceValue;
             set
@@ -26,17 +26,17 @@ namespace Epam.Demo.SaleTerminalLibrary.Common
 
 
         /// <summary>
-        /// Helper method for chek if value of price is equal with value double type
+        /// Helper method for chek if value of price is equal with value decimal type
         /// can be override in inherited class for compare only 2 sign after coma or use better etc. ...
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
-        public virtual int CompareTo(double other)
+        public virtual int CompareTo(decimal other)
         {
             return Value.CompareTo(other);
         }
 
-        public static bool operator !=(Price operand1, double operand2)
+        public static bool operator !=(Price operand1, decimal operand2)
         {
             if (operand1 != null)
             {
@@ -46,7 +46,7 @@ namespace Epam.Demo.SaleTerminalLibrary.Common
             return false;
         }
 
-        public static bool operator ==(Price operand1, double operand2)
+        public static bool operator ==(Price operand1, decimal operand2)
         {
             if (operand1 != null)
             {

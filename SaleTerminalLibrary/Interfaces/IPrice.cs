@@ -5,11 +5,11 @@ namespace Epam.Demo.SaleTerminalLibrary.Interfaces
     /// <summary>
     /// Interface that describe price of product
     /// </summary>
-    public interface IPrice : IComparable<double>
+    public interface IPrice : IComparable<decimal>
     {
         /// <summary>
         /// Property value of price
         /// </summary>
-        double Value { get; set; }
+        decimal Value { get; set; }
     }
 }

@@ -18,7 +18,7 @@ namespace Epam.Demo.SaleTerminalLibrary.Models
         /// </summary>
         /// <param name="productCode"></param>
         /// <param name="productPrice"></param>
-        public void SetPrice(string productCode, double productPrice)
+        public void SetPrice(string productCode, decimal productPrice)
         {
             if (prices.ContainsKey(productCode))
             {
@@ -38,7 +38,7 @@ namespace Epam.Demo.SaleTerminalLibrary.Models
         /// <param name="productCode"></param>
         /// <param name="productVolumePrice"></param>
         /// <param name="minimalVolume"></param>
-        public void SetVolumePrice(string productCode, double productVolumePrice, uint minimalVolume)
+        public void SetVolumePrice(string productCode, decimal productVolumePrice, uint minimalVolume)
         {
             var productPriceInfo = new VolumePrice
             {
@@ -74,7 +74,7 @@ namespace Epam.Demo.SaleTerminalLibrary.Models
         /// </summary>
         /// <param name="productCode"></param>
         /// <returns></returns>
-        public double? GetPrice(string productCode)
+        public decimal? GetPrice(string productCode)
         {
             if (prices.TryGetValue(productCode, out var priceInfo))
             {

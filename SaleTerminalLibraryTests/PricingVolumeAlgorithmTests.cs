@@ -10,54 +10,42 @@ namespace Epam.Demo.SaleTerminalLibrary.Tests
         [Test()]
         public void When_CalculatePriceForProductWithSinglePrice_Expected_PriceMultiplayOnCount()
         {
-            const double expected = 3.75;
+            const decimal expected = 3.75m;
             Pricing pricing = new Pricing();
-            pricing.SetPrice("A", 1.25);
+            pricing.SetPrice("A", 1.25m);
 
-            PricingVolumeAlgorithm algorithm = new PricingVolumeAlgorithm()
-            {
-                Accuracy = 0.01
-            };
-            double result = algorithm.Calculate("A", 3, pricing);
-            double difference = Math.Abs(result * algorithm.Accuracy);
+            PricingVolumeAlgorithm algorithm = new PricingVolumeAlgorithm();
+            decimal result = algorithm.Calculate("A", 3, pricing);
 
-            Assert.That(Math.Abs(result - expected), Is.LessThanOrEqualTo(difference));
+            Assert.That(expected, Is.EqualTo(result));
         }
 
         [Test()]
         public void When_CalculatePriceForProductWithVolumePrice_Expected_VolumePriceMultiplayOnCount()
         {
-            const double expected = 13.2;
+            const decimal expected = 13.2m;
             Pricing pricing = new Pricing();
-            pricing.SetPrice("B", 1.00);
-            pricing.SetVolumePrice("B", 1.2, 6);
+            pricing.SetPrice("B", 1.00m);
+            pricing.SetVolumePrice("B", 1.2m, 6);
 
-            PricingVolumeAlgorithm algorithm = new PricingVolumeAlgorithm()
-            {
-                Accuracy = 0.01
-            };
-            double result = algorithm.Calculate("B", 11, pricing);
-            double difference = Math.Abs(result * algorithm.Accuracy);
+            PricingVolumeAlgorithm algorithm = new PricingVolumeAlgorithm();
+            decimal result = algorithm.Calculate("B", 11, pricing);
 
-            Assert.That(Math.Abs(result - expected), Is.LessThanOrEqualTo(difference));
+            Assert.That(expected, Is.EqualTo(result));
         }
 
         [Test()]
         public void When_CalculatePriceForProductWithVolumePriceWithNotEnoghtCount_Expected_PriceMultiplayOnCount()
         {
-            const double expected = 11.0;
+            const decimal expected = 11.0m;
             Pricing pricing = new Pricing();
-            pricing.SetPrice("B", 1.00);
-            pricing.SetVolumePrice("B", 1.2, 100);
+            pricing.SetPrice("B", 1.00m);
+            pricing.SetVolumePrice("B", 1.2m, 100);
 
-            PricingVolumeAlgorithm algorithm = new PricingVolumeAlgorithm()
-            {
-                Accuracy = 0.01
-            };
-            double result = algorithm.Calculate("B", 11, pricing);
-            double difference = Math.Abs(result * algorithm.Accuracy);
+            PricingVolumeAlgorithm algorithm = new PricingVolumeAlgorithm();
+            decimal result = algorithm.Calculate("B", 11, pricing);
 
-            Assert.That(Math.Abs(result - expected), Is.LessThanOrEqualTo(difference));
+            Assert.That(expected, Is.EqualTo(result));
         }
     }
 }

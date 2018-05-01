@@ -6,14 +6,12 @@ namespace Epam.Demo.SaleTerminalLibrary
 {
     public class PricingPackAlgorithm : IPricingAlgorithm
     {
-        public double Accuracy { get; set; }
-
-        public double Calculate(string productCode, uint productCount, Pricing pricing)
+        public decimal Calculate(string productCode, uint productCount, Pricing pricing)
         {
             IPrice result = new Price();
 
             IVolumePrice volumePriceInfo = pricing.GetVolumePrice(productCode);
-            double? singlePriceInfo = pricing.GetPrice(productCode);
+            decimal? singlePriceInfo = pricing.GetPrice(productCode);
 
             if (productCount >= volumePriceInfo?.MinimalCount && singlePriceInfo != null)
             {
