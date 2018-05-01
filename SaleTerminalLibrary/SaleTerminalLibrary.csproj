@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\VolumePrice.cs" />
+    <Compile Include="Common\GraterOrEqualZerroRule.cs" />
     <Compile Include="Interfaces\IPrice.cs" />
+    <Compile Include="Interfaces\IValidationRule.cs" />
     <Compile Include="Interfaces\IVolumePrice.cs" />
     <Compile Include="Interfaces\IPricingAlgorithm.cs" />
     <Compile Include="Models\Cart.cs" />

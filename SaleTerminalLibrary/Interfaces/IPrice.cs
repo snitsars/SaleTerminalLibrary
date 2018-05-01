@@ -5,7 +5,7 @@ namespace Epam.Demo.SaleTerminalLibrary.Interfaces
     /// <summary>
     /// Interface that describe price of product
     /// </summary>
-    public interface IPrice : IComparable<decimal>
+    public interface IPrice
     {
         /// <summary>
         /// Property value of price
