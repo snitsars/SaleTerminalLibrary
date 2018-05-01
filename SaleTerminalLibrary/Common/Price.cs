@@ -3,6 +3,9 @@ using System;
 
 namespace Epam.Demo.SaleTerminalLibrary.Common
 {
+    /// <summary>
+    /// Class represent price of product that should to be order as single
+    /// </summary>
     public class Price : IPrice
     {
         private decimal priceValue;

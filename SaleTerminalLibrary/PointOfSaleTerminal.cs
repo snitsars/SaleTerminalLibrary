@@ -15,8 +15,8 @@ namespace Epam.Demo.SaleTerminalLibrary
         private byte optionSignAfterPoint = 2;
 
         private readonly Cart productCart = new Cart();
-        private readonly IPricingAlgorithm priceVolumeAlgorithm = new PricingPackAlgorithm();
-        private Pricing pricingValue;
+        private readonly IPricingAlgorithm totalPriceCalculator = new PricingPackAlgorithm();
+        private IPricing pricingValue;
 
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Epam.Demo.SaleTerminalLibrary
             decimal result = 0;
             foreach (KeyValuePair<string, uint> product in productCart)
             {
-                result += priceVolumeAlgorithm.Calculate(product.Key, product.Value, pricingValue);
+                result += totalPriceCalculator.Calculate(product.Key, product.Value, pricingValue);
             }
             result = decimal.Round(result, optionSignAfterPoint, MidpointRounding.AwayFromZero);
 

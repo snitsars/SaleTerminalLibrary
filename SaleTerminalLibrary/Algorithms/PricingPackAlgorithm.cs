@@ -6,7 +6,7 @@ namespace Epam.Demo.SaleTerminalLibrary.Algorithms
 {
     public class PricingPackAlgorithm : IPricingAlgorithm
     {
-        public decimal Calculate(string productCode, uint productCount, Pricing pricing)
+        public decimal Calculate(string productCode, uint productCount, IPricing pricing)
         {
             IPrice result = new Price();
 

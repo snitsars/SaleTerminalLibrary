@@ -51,6 +51,7 @@
     <Compile Include="Common\Price.cs" />
     <Compile Include="Interfaces\ISinglePricing.cs" />
     <Compile Include="Interfaces\IVolumePricing.cs" />
+    <Compile Include="Interfaces\IPricing.cs" />
     <Compile Include="Models\Pricing.cs" />
     <Compile Include="Algorithms\PricingPackAlgorithm.cs" />
     <Compile Include="Algorithms\PricingVolumeAlgorithm.cs" />

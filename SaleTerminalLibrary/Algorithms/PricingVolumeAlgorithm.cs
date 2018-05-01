@@ -16,7 +16,7 @@ namespace Epam.Demo.SaleTerminalLibrary.Algorithms
         /// <param name="productCount"></param>
         /// <param name="pricing"></param>
         /// <returns></returns>
-        public decimal Calculate(string productCode, uint productCount, Pricing pricing)
+        public decimal Calculate(string productCode, uint productCount, IPricing pricing)
         {
             IPrice result = new Price();
 

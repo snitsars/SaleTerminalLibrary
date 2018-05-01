@@ -1,4 +1,5 @@
-﻿using Epam.Demo.SaleTerminalLibrary.Models;
+﻿using Epam.Demo.SaleTerminalLibrary.Interfaces;
+using Epam.Demo.SaleTerminalLibrary.Models;
 using NUnit.Framework;
 
 namespace Epam.Demo.SaleTerminalLibraryTests.Models

@@ -1,13 +1,13 @@
-﻿using Epam.Demo.SaleTerminalLibrary.Common;
+﻿using System.Collections.Generic;
+using Epam.Demo.SaleTerminalLibrary.Common;
 using Epam.Demo.SaleTerminalLibrary.Interfaces;
-using System.Collections.Generic;
 
 namespace Epam.Demo.SaleTerminalLibrary.Models
 {
     /// <summary>
     /// Class contained information about products prices single and volume.
     /// </summary>
-    public class Pricing : ISinglePricing, IVolumePricing
+    public class Pricing : IPricing
     {
         private readonly Dictionary<string, IPrice> prices = new Dictionary<string, IPrice>();
         private readonly Dictionary<string, IVolumePrice> volumePrices = new Dictionary<string, IVolumePrice>();
