@@ -2,7 +2,7 @@
 using Epam.Demo.SaleTerminalLibrary.Interfaces;
 using Epam.Demo.SaleTerminalLibrary.Models;
 
-namespace Epam.Demo.SaleTerminalLibrary
+namespace Epam.Demo.SaleTerminalLibrary.Algorithms
 {
     /// <summary>
     /// Class derrive implemetation of calculation price algorithm for volume buyers

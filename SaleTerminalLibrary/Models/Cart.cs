@@ -9,7 +9,7 @@ namespace Epam.Demo.SaleTerminalLibrary.Models
     /// </summary>
     public class Cart : IEnumerable
     {
-        private Dictionary<string, uint> products = new Dictionary<string, uint>();
+        private readonly Dictionary<string, uint> products = new Dictionary<string, uint>();
 
 
         /// <summary>

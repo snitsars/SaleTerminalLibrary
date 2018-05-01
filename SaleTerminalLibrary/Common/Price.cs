@@ -38,22 +38,16 @@ namespace Epam.Demo.SaleTerminalLibrary.Common
 
         public static bool operator !=(Price operand1, decimal operand2)
         {
-            if (operand1 != null)
-            {
-                var compareResult = operand1.CompareTo(operand2);
-                return compareResult == 1 || compareResult == -1;
-            }
-            return false;
+            if (operand1 == null) return false;
+
+            var compareResult = operand1.CompareTo(operand2);
+            return compareResult == 1 || compareResult == -1;
         }
 
         public static bool operator ==(Price operand1, decimal operand2)
         {
-            if (operand1 != null)
-            {
-                var compareResult = operand1.CompareTo(operand2);
-                return compareResult == 0;
-            }
-            return false;
+            var compareResult = operand1?.CompareTo(operand2);
+            return compareResult == 0;
         }
     }
 }

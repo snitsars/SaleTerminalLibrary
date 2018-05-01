@@ -38,8 +38,8 @@
     <Compile Include="Models\CartTests.cs" />
     <Compile Include="Common\PriceTests.cs" />
     <Compile Include="Models\PricingTests.cs" />
-    <Compile Include="PricingPackAlgorithmTests.cs" />
-    <Compile Include="PricingVolumeAlgorithmTests.cs" />
+    <Compile Include="Algorithms\PricingPackAlgorithmTests.cs" />
+    <Compile Include="Algorithms\PricingVolumeAlgorithmTests.cs" />
     <Compile Include="SaleTerminalTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

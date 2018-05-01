@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Epam.Demo.SaleTerminalLibrary.Algorithms;
 using Epam.Demo.SaleTerminalLibrary.Interfaces;
 using Epam.Demo.SaleTerminalLibrary.Models;
 
@@ -13,9 +14,9 @@ namespace Epam.Demo.SaleTerminalLibrary
     {
         private byte optionSignAfterPoint = 2;
 
-        private Cart productCart = new Cart();
-        private IPricingAlgorithm priceVolumeAlgorithm = new PricingPackAlgorithm();
-        private Pricing pricingValue = null;
+        private readonly Cart productCart = new Cart();
+        private readonly IPricingAlgorithm priceVolumeAlgorithm = new PricingPackAlgorithm();
+        private Pricing pricingValue;
 
 
         /// <summary>
@@ -24,7 +25,7 @@ namespace Epam.Demo.SaleTerminalLibrary
         /// </summary>
         public Pricing PricesTable
         {
-            set { pricingValue = value; }
+            set => pricingValue = value;
         }
 
 

@@ -7,10 +7,10 @@ namespace Epam.Demo.SaleTerminalLibrary.Models
     /// <summary>
     /// Class contained information about products prices single and volume.
     /// </summary>
-    public class Pricing
+    public class Pricing : ISinglePricing, IVolumePricing
     {
-        private Dictionary<string, IPrice> prices = new Dictionary<string, IPrice>();
-        private Dictionary<string, IVolumePrice> volumePrices = new Dictionary<string, IVolumePrice>();
+        private readonly Dictionary<string, IPrice> prices = new Dictionary<string, IPrice>();
+        private readonly Dictionary<string, IVolumePrice> volumePrices = new Dictionary<string, IVolumePrice>();
 
 
         /// <summary>
