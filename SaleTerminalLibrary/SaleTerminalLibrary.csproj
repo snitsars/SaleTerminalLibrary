@@ -71,7 +71,7 @@
     <Compile Include="Interfaces\IValidationRule.cs" />
     <Compile Include="Interfaces\IVolumePrice.cs" />
     <Compile Include="Interfaces\IPricingAlgorithm.cs" />
-    <Compile Include="IPointOfSaleTerminal.cs" />
+    <Compile Include="Interfaces\IPointOfSaleTerminal.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Common\Price.cs" />
     <Compile Include="Interfaces\ISinglePricing.cs" />

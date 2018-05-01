@@ -1,4 +1,5 @@
 ﻿using Epam.Demo.SaleTerminalLibrary;
+using Epam.Demo.SaleTerminalLibrary.Interfaces;
 using NUnit.Framework;
 using Unity;
 
