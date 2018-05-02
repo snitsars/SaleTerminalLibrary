@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Epam.Demo.SaleTerminalLibrary.Interfaces
+﻿namespace Epam.Demo.SaleTerminalLibrary.Interfaces
 {
     /// <summary>
     /// Interface that describe price of product

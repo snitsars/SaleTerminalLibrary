@@ -10,10 +10,7 @@ namespace Epam.Demo.SaleTerminalLibrary.Common.Tests
         public void When_SetValue_Expected_GetSameValue()
         {
             decimal initialValue = 100.2m;
-            var priceInfo = new Price
-            {
-                Value = initialValue
-            };
+            var priceInfo = new Price{Value = initialValue};
 
             Assert.That(priceInfo.Value, Is.EqualTo(initialValue));
         }
@@ -32,8 +29,7 @@ namespace Epam.Demo.SaleTerminalLibrary.Common.Tests
         {
             decimal initialValue = 5.10m;
             decimal compareValue = 5.10m;
-            var priceInfo = new Price();
-            priceInfo.Value = initialValue;
+            var priceInfo = new Price {Value = initialValue};
             Assert.That(priceInfo.Value, Is.EqualTo(compareValue));
         }
 
@@ -42,8 +38,7 @@ namespace Epam.Demo.SaleTerminalLibrary.Common.Tests
         {
             decimal initialValue = 25.10m;
             decimal compareValue = 25.11m;
-            var priceInfo = new Price();
-            priceInfo.Value = initialValue;
+            var priceInfo = new Price {Value = initialValue};
             Assert.That(priceInfo.Value, Is.Not.EqualTo(compareValue));
         }
     }

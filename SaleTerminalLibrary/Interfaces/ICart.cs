@@ -25,6 +25,6 @@ namespace Epam.Demo.SaleTerminalLibrary.Interfaces
         /// Get enumerator for products, can be used in for eache loop
         /// </summary>
         /// <returns></returns>
-        IEnumerator GetEnumerator();
+        new IEnumerator GetEnumerator();
     }
 }

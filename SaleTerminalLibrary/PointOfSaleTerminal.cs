@@ -21,8 +21,8 @@ namespace Epam.Demo.SaleTerminalLibrary
         /// Constructor of terminal class
         /// </summary>
         /// <param name="cart"></param>
-        /// <param name="prices">
         /// <param name="priceCalulationAlgorithm"></param>
+        /// <param name="prices"></param>
         public PointOfSaleTerminal(ICart cart, IPricing prices, IPricingAlgorithm priceCalulationAlgorithm)
         {
             this.prices = prices;
@@ -49,10 +49,12 @@ namespace Epam.Demo.SaleTerminalLibrary
         /// <returns></returns>
         public decimal CalculateTotal()
         {
-            decimal result = 0;
+            decimal result = 0m;
             foreach (KeyValuePair<string, uint> product in cart)
             {
-                result += priceCalulationAlgorithm.Calculate(product.Key, product.Value, prices);
+                var price = prices?.GetPrice(product.Key);
+                var volumPrice = prices?.GetVolumePrice(product.Key);
+                result += priceCalulationAlgorithm.Calculate(product.Key, product.Value, price, volumPrice);
             }
             result = decimal.Round(result, OptionSignAfterPoint, MidpointRounding.AwayFromZero);
 

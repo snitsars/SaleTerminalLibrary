@@ -1,5 +1,4 @@
-﻿using System.Dynamic;
-using Epam.Demo.SaleTerminalLibrary.Interfaces;
+﻿using Epam.Demo.SaleTerminalLibrary.Interfaces;
 
 namespace Epam.Demo.SaleTerminalLibrary.Common
 {

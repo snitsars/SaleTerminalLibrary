@@ -1,29 +1,36 @@
 ﻿using Epam.Demo.SaleTerminalLibrary.Common;
 using Epam.Demo.SaleTerminalLibrary.Interfaces;
-using Epam.Demo.SaleTerminalLibrary.Models;
 
 namespace Epam.Demo.SaleTerminalLibrary.Algorithms
 {
+    /// <summary>
+    /// Class provide algorithm of calculation total price for all items of product
+    /// </summary>
     public class PricingPackAlgorithm : IPricingAlgorithm
     {
-        public decimal Calculate(string productCode, uint productCount, IPricing pricing)
+        /// <summary>
+        /// Method for calculate price for products that can be order by volume prices
+        /// </summary>
+        /// <param name="productCode"></param>
+        /// <param name="productCount"></param>
+        /// <param name="singlePrice"></param>
+        /// <param name="volumePrice"></param>
+        /// <returns></returns>
+        public decimal Calculate(string productCode, uint productCount, decimal? singlePrice, IVolumePrice volumePrice)
         {
             IPrice result = new Price();
 
-            IVolumePrice volumePriceInfo = pricing.GetVolumePrice(productCode);
-            decimal? singlePriceInfo = pricing.GetPrice(productCode);
-
-            if (productCount >= volumePriceInfo?.MinimalCount && singlePriceInfo != null)
+            if (productCount >= volumePrice?.MinimalCount && singlePrice != null)
             {
-                var countOfPack = productCount / volumePriceInfo.MinimalCount;
-                var counOfFreeItems = productCount % volumePriceInfo.MinimalCount;
-                result.Value += countOfPack * volumePriceInfo.MinimalCount * volumePriceInfo.Value;
-                result.Value += counOfFreeItems * singlePriceInfo.Value;
+                var countOfPack = productCount / volumePrice.MinimalCount;
+                var counOfFreeItems = productCount % volumePrice.MinimalCount;
+                result.Value += countOfPack * volumePrice.MinimalCount * volumePrice.Value;
+                result.Value += counOfFreeItems * singlePrice.Value;
             }
             else
             {
-                if (singlePriceInfo != null)
-                    result.Value = productCount * singlePriceInfo.Value;
+                if (singlePrice != null)
+                    result.Value = productCount * singlePrice.Value;
             }
 
             return result.Value;

@@ -1,6 +1,4 @@
-﻿using Epam.Demo.SaleTerminalLibrary.Models;
-
-namespace Epam.Demo.SaleTerminalLibrary.Interfaces
+﻿namespace Epam.Demo.SaleTerminalLibrary.Interfaces
 {
     /// <summary>
     /// Intrface for define method of price calculation algorithm
@@ -12,8 +10,9 @@ namespace Epam.Demo.SaleTerminalLibrary.Interfaces
         /// </summary>
         /// <param name="productCode"></param>
         /// <param name="productCount"></param>
-        /// <param name="pricing"></param>
+        /// <param name="singlePrice"></param>
+        /// <param name="volumePrice"></param>
         /// <returns></returns>
-        decimal Calculate(string productCode, uint productCount, IPricing pricing);
+        decimal Calculate(string productCode, uint productCount, decimal? singlePrice, IVolumePrice volumePrice);
     }
 }

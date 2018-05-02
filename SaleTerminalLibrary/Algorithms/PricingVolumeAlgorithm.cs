@@ -1,6 +1,5 @@
 ﻿using Epam.Demo.SaleTerminalLibrary.Common;
 using Epam.Demo.SaleTerminalLibrary.Interfaces;
-using Epam.Demo.SaleTerminalLibrary.Models;
 
 namespace Epam.Demo.SaleTerminalLibrary.Algorithms
 {
@@ -14,23 +13,21 @@ namespace Epam.Demo.SaleTerminalLibrary.Algorithms
         /// </summary>
         /// <param name="productCode"></param>
         /// <param name="productCount"></param>
-        /// <param name="pricing"></param>
+        /// <param name="singlePrice"></param>
+        /// <param name="volumePrice"></param>
         /// <returns></returns>
-        public decimal Calculate(string productCode, uint productCount, IPricing pricing)
+        public decimal Calculate(string productCode, uint productCount, decimal? singlePrice, IVolumePrice volumePrice)
         {
             var result = new Price();
 
-            IVolumePrice volumePriceInfo = pricing.GetVolumePrice(productCode);
-            decimal? singlePriceInfo = pricing.GetPrice(productCode);
-
-            if (productCount >= volumePriceInfo?.MinimalCount)
+            if (productCount >= volumePrice?.MinimalCount)
             {
-                result.Value = productCount * volumePriceInfo.Value;
+                result.Value = productCount * volumePrice.Value;
             }
             else
             {
-                if (singlePriceInfo != null)
-                    result.Value = productCount * singlePriceInfo.Value;
+                if (singlePrice != null)
+                    result.Value = productCount * singlePrice.Value;
             }
 
             return result.Value;

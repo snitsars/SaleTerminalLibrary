@@ -1,5 +1,5 @@
 ﻿using Epam.Demo.SaleTerminalLibrary.Interfaces;
-using Epam.Demo.SaleTerminalLibraryTests.Mocks;
+using Epam.Demo.SaleTerminalLibrary.Models;
 using NUnit.Framework;
 using System.Collections.Generic;
 using Unity;
@@ -9,14 +9,36 @@ namespace Epam.Demo.SaleTerminalLibrary.Tests
     [TestFixture()]
     public class PointOfSaleTerminalTests
     {
-        [Test()]
-        public void ScanTest()
-        {
-            IUnityContainer components = new UnityContainer();
-            PackTerminal.RegisterElements(components);
+        private readonly IUnityContainer components;
 
-            var terminal = components.Resolve<IPointOfSaleTerminal>();
+        public PointOfSaleTerminalTests()
+        {
+            components = new UnityContainer();
+
+            IPricing pricing = new Pricing();
+            pricing.SetPrice("A", 1.25m);
+            pricing.SetVolumePrice("A", 1.00m, 3);
+            pricing.SetPrice("B", 4.25m);
+            pricing.SetPrice("C", 1.00m);
+            pricing.SetVolumePrice("C", 0.833m, 6);
+            pricing.SetPrice("D", 0.75m);
+
+            components.RegisterInstance(pricing);
+            components.RegisterType<ICart, Cart>();
+        }
+
+        [Test()]
+        public void When_ScanProductCodeThatMissingInPricing_Expected_exception()
+        {
+            IPointOfSaleTerminal terminal = new PointOfSaleTerminal(components.Resolve<ICart>(), components.Resolve<IPricing>(), null);
             Assert.Throws<KeyNotFoundException>(() => terminal.Scan("Dino"));
+        }
+
+        [Test()]
+        public void When_ScanProductCodeThatExistInPricing_Expected_NoException()
+        {
+            IPointOfSaleTerminal terminal = new PointOfSaleTerminal(components.Resolve<ICart>(), components.Resolve<IPricing>(), null);
+            Assert.DoesNotThrow(() => terminal.Scan("A"));
         }
     }
 }

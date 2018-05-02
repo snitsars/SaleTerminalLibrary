@@ -1,6 +1,5 @@
 ﻿using Epam.Demo.SaleTerminalLibrary.Algorithms;
-using Epam.Demo.SaleTerminalLibrary.Interfaces;
-using Epam.Demo.SaleTerminalLibrary.Models;
+using Epam.Demo.SaleTerminalLibrary.Common;
 using NUnit.Framework;
 
 namespace Epam.Demo.SaleTerminalLibraryTests.Algorithms
@@ -11,42 +10,28 @@ namespace Epam.Demo.SaleTerminalLibraryTests.Algorithms
         [Test()]
         public void When_CalculatePriceForProductWithSinglePrice_Expected_PriceMultiplayOnCount()
         {
-            const decimal expected = 3.75m;
-            Pricing pricing = new Pricing();
-            pricing.SetPrice("A", 1.25m);
-
             PricingVolumeAlgorithm algorithm = new PricingVolumeAlgorithm();
-            decimal result = algorithm.Calculate("A", 3, pricing);
+            decimal result = algorithm.Calculate("A", 3, 1.25m, null);
 
-            Assert.That(expected, Is.EqualTo(result));
+            Assert.That(result, Is.EqualTo(3.75m));
         }
 
         [Test()]
         public void When_CalculatePriceForProductWithVolumePrice_Expected_VolumePriceMultiplayOnCount()
         {
-            const decimal expected = 13.2m;
-            Pricing pricing = new Pricing();
-            pricing.SetPrice("B", 1.00m);
-            pricing.SetVolumePrice("B", 1.2m, 6);
-
             PricingVolumeAlgorithm algorithm = new PricingVolumeAlgorithm();
-            decimal result = algorithm.Calculate("B", 11, pricing);
+            decimal result = algorithm.Calculate("B", 11, 1.00m, new VolumePrice(){MinimalCount = 6, Value = 1.2m});
 
-            Assert.That(expected, Is.EqualTo(result));
+            Assert.That(result, Is.EqualTo(13.2m));
         }
 
         [Test()]
         public void When_CalculatePriceForProductWithVolumePriceWithNotEnoghtCount_Expected_PriceMultiplayOnCount()
         {
-            const decimal expected = 11.0m;
-            Pricing pricing = new Pricing();
-            pricing.SetPrice("B", 1.00m);
-            pricing.SetVolumePrice("B", 1.2m, 100);
-
             PricingVolumeAlgorithm algorithm = new PricingVolumeAlgorithm();
-            decimal result = algorithm.Calculate("B", 11, pricing);
+            decimal result = algorithm.Calculate("B", 11, 1.00m, new VolumePrice(){MinimalCount = 100, Value = 1.20m});
 
-            Assert.That(expected, Is.EqualTo(result));
+            Assert.That(result, Is.EqualTo(11.0));
         }
     }
 }

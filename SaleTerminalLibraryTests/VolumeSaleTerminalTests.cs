@@ -1,5 +1,5 @@
-﻿using Epam.Demo.SaleTerminalLibrary;
-using Epam.Demo.SaleTerminalLibrary.Interfaces;
+﻿using Epam.Demo.SaleTerminalLibrary.Interfaces;
+using Epam.Demo.SaleTerminalLibrary.Models;
 using Epam.Demo.SaleTerminalLibraryTests.Mocks;
 using NUnit.Framework;
 using Unity;
@@ -9,15 +9,30 @@ namespace Epam.Demo.SaleTerminalLibraryTests
     [TestFixture]
     public class VolumeSaleTerminalTests
     {
+        private readonly IUnityContainer components;
+
+        public VolumeSaleTerminalTests()
+        {
+            components = new UnityContainer();
+            VolumeTerminal.RegisterElements(components);
+
+            IPricing pricing = new Pricing();
+            pricing.SetPrice("A", 1.25m);
+            pricing.SetVolumePrice("A", 1.00m, 3);
+            pricing.SetPrice("B", 4.25m);
+            pricing.SetPrice("C", 1.00m);
+            pricing.SetVolumePrice("C", 0.833m, 6);
+            pricing.SetPrice("D", 0.75m);
+
+            components.RegisterInstance(pricing);
+        }
+
         [Test]
         public void When_InVolumeTerminalProductSetABCD_Expected_TotallPrice7_25()
         {
             const decimal expected = 7.25m;
-
-            IUnityContainer components = new UnityContainer();
-            VolumeTerminal.RegisterElements(components);
-
             var terminal = components.Resolve<IPointOfSaleTerminal>();
+
             terminal.Scan("A");
             terminal.Scan("B");
             terminal.Scan("C");
@@ -31,11 +46,8 @@ namespace Epam.Demo.SaleTerminalLibraryTests
         public void When_InVolumeTerminalProductSetABCDABA_Expected_TotallPrice13_25()
         {
             const decimal expected = 13.25m;
-
-            IUnityContainer components = new UnityContainer();
-            VolumeTerminal.RegisterElements(components);
-
             var terminal = components.Resolve<IPointOfSaleTerminal>();
+
             terminal.Scan("A");
             terminal.Scan("B");
             terminal.Scan("C");
@@ -52,11 +64,8 @@ namespace Epam.Demo.SaleTerminalLibraryTests
         public void When_InVolumeTerminalProductSetCCCCCCC_Expected_TotallPrice6_00()
         {
             const decimal expected = 5.83m;
-
-            IUnityContainer components = new UnityContainer();
-            VolumeTerminal.RegisterElements(components);
-
             var terminal = components.Resolve<IPointOfSaleTerminal>();
+
             terminal.Scan("C");
             terminal.Scan("C");
             terminal.Scan("C");

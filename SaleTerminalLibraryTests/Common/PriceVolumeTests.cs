@@ -9,8 +9,7 @@ namespace Epam.Demo.SaleTerminalLibrary.Common.Tests
         public void When_SetMinimalCount_Expected_GetSameMinimalCount()
         {
             uint initialValue = 100;
-            var priceInfo = new VolumePrice();
-            priceInfo.MinimalCount = initialValue;
+            var priceInfo = new VolumePrice {MinimalCount = initialValue};
 
             Assert.That(priceInfo.MinimalCount, Is.EqualTo(initialValue));
         }
