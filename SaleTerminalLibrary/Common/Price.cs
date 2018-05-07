@@ -1,5 +1,4 @@
-﻿using Epam.Demo.SaleTerminalLibrary.Interfaces;
-using System;
+﻿using System;
 
 namespace Epam.Demo.SaleTerminalLibrary.Common
 {

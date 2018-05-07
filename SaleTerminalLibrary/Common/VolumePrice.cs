@@ -1,6 +1,4 @@
-﻿using Epam.Demo.SaleTerminalLibrary.Interfaces;
-
-namespace Epam.Demo.SaleTerminalLibrary.Common
+﻿namespace Epam.Demo.SaleTerminalLibrary.Common
 {
     /// <summary>
     /// Class represent implementation of product price for volume products
