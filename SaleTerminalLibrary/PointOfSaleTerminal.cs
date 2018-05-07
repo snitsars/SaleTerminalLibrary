@@ -12,7 +12,6 @@ namespace Epam.Demo.SaleTerminalLibrary
     public class PointOfSaleTerminal : IPointOfSaleTerminal
     {
         private const byte OptionSignAfterPoint = 2;
-
         private readonly ICart cart;
         private readonly IPricingAlgorithm priceCalulationAlgorithm;
         private readonly IPricing prices;
