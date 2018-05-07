@@ -3,13 +3,13 @@
 namespace Epam.Demo.SaleTerminalLibrary.Common
 {
     /// <summary>
-    /// Class that represent products that can to be order by Volume price
+    /// Class represent implementation of product price for volume products
     /// </summary>
-    public class VolumePrice : Price, IVolumePrice
+    public sealed class VolumePrice : Price
     {
         /// <summary>
         /// Property that tell us how many item should be buyed for use volume or pack price
         /// </summary>
-        public uint MinimalCount { get; set; }
+        public uint MinimalVolume { get; set; }
     }
 }

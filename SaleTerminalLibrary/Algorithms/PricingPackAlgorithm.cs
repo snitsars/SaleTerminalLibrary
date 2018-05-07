@@ -4,27 +4,22 @@ using Epam.Demo.SaleTerminalLibrary.Interfaces;
 namespace Epam.Demo.SaleTerminalLibrary.Algorithms
 {
     /// <summary>
-    /// Class provide algorithm of calculation total price for all items of product
+    /// Class provide algorithm implememntation of calculation total price for all items of product
     /// </summary>
     public class PricingPackAlgorithm : IPricingAlgorithm
     {
         /// <summary>
-        /// Method for calculate price for products that can be order by volume prices
+        /// Implementation of method for calculate total price of pack product based on single and pack price from pricing
         /// </summary>
-        /// <param name="productCode"></param>
-        /// <param name="productCount"></param>
-        /// <param name="singlePrice"></param>
-        /// <param name="volumePrice"></param>
-        /// <returns></returns>
-        public decimal Calculate(string productCode, uint productCount, decimal? singlePrice, IVolumePrice volumePrice)
+        public decimal Calculate(string productCode, uint productCount, decimal? singlePrice, decimal? volumePrice, uint? minVolume)
         {
-            IPrice result = new Price();
+            Price result = new Price();
 
-            if (productCount >= volumePrice?.MinimalCount && singlePrice != null)
+            if (volumePrice != null && minVolume !=null && productCount >= minVolume && singlePrice != null)
             {
-                var countOfPack = productCount / volumePrice.MinimalCount;
-                var counOfFreeItems = productCount % volumePrice.MinimalCount;
-                result.Value += countOfPack * volumePrice.MinimalCount * volumePrice.Value;
+                var countOfPack = productCount / minVolume.Value;
+                var counOfFreeItems = productCount % minVolume.Value;
+                result.Value += countOfPack * minVolume.Value * volumePrice.Value;
                 result.Value += counOfFreeItems * singlePrice.Value;
             }
             else

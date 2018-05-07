@@ -4,14 +4,15 @@ using System;
 namespace Epam.Demo.SaleTerminalLibrary.Common
 {
     /// <summary>
-    /// Class represent price of product that should to be order as single
+    /// Class represent implementation of product price for single products
     /// </summary>
-    public class Price : IPrice
+    public class Price
     {
         private decimal value;
 
+
         /// <summary>
-        /// Property for set/get price value
+        /// Property for set/get value of price
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException"> In case when we try to set value less than 0</exception>
         public virtual decimal Value

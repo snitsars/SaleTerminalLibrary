@@ -1,4 +1,5 @@
-﻿using Epam.Demo.SaleTerminalLibrary.Models;
+﻿using Epam.Demo.SaleTerminalLibrary.Common;
+using Epam.Demo.SaleTerminalLibrary.Models;
 using NUnit.Framework;
 
 namespace Epam.Demo.SaleTerminalLibraryTests.Models
@@ -11,8 +12,8 @@ namespace Epam.Demo.SaleTerminalLibraryTests.Models
         {
             decimal initialPrice = 10.5m;
             Pricing pricing = new Pricing();
-            pricing.SetPrice("A", initialPrice);
-            Assert.That(pricing.GetPrice("A"), Is.EqualTo(initialPrice));
+            pricing.SetSinglePrice("A", initialPrice);
+            Assert.That(pricing.GetSinglePrice("A"), Is.EqualTo(initialPrice));
         }
 
 
@@ -22,9 +23,9 @@ namespace Epam.Demo.SaleTerminalLibraryTests.Models
             decimal initialPrice = 12.5m;
             decimal expectedPrice = 18.9m;
             Pricing pricing = new Pricing();
-            pricing.SetPrice("A", initialPrice);
-            pricing.SetPrice("A", expectedPrice);
-            Assert.That(pricing.GetPrice("A"), Is.EqualTo(expectedPrice));
+            pricing.SetSinglePrice("A", initialPrice);
+            pricing.SetSinglePrice("A", expectedPrice);
+            Assert.That(pricing.GetSinglePrice("A"), Is.EqualTo(expectedPrice));
         }
 
 
@@ -55,9 +56,9 @@ namespace Epam.Demo.SaleTerminalLibraryTests.Models
             decimal initialPrice = 9.99m;
             string initialProduct = "Tort";
             Pricing pricing = new Pricing();
-            pricing.SetPrice(initialProduct, initialPrice);
+            pricing.SetSinglePrice(initialProduct, initialPrice);
 
-            var productPrice = pricing.GetPrice("D");
+            var productPrice = pricing.GetSinglePrice("D");
             Assert.That(productPrice, Is.Null);
         }
 
@@ -70,7 +71,7 @@ namespace Epam.Demo.SaleTerminalLibraryTests.Models
             Pricing pricing = new Pricing();
             pricing.SetVolumePrice(initialProduct, initialVolumePrice, initialMinimalCount);
 
-            var productPrice = pricing.GetVolumePrice("D");
+            VolumePrice productPrice = pricing.GetVolumePrice("D");
             Assert.That(productPrice, Is.Null);
         }
 
@@ -80,7 +81,7 @@ namespace Epam.Demo.SaleTerminalLibraryTests.Models
             decimal initialPrice = 9.99m;
             string initialProduct = "Tort";
             Pricing pricing = new Pricing();
-            pricing.SetPrice(initialProduct, initialPrice);
+            pricing.SetSinglePrice(initialProduct, initialPrice);
 
             Assert.That(true, Is.EqualTo(pricing.ContainsKey(initialProduct)));
         }

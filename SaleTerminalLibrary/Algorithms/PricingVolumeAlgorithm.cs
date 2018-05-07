@@ -4,23 +4,18 @@ using Epam.Demo.SaleTerminalLibrary.Interfaces;
 namespace Epam.Demo.SaleTerminalLibrary.Algorithms
 {
     /// <summary>
-    /// Class derrive implemetation of calculation price algorithm for volume buyers
+    /// Class provide algorithm implememntation of calculation total price for all items of product
     /// </summary>
     public class PricingVolumeAlgorithm : IPricingAlgorithm
     {
         /// <summary>
-        /// Method for calculate price for products that can be order by volume prices
+        /// Implementation of method for calculate total price of volume product based on single and volume price from pricing
         /// </summary>
-        /// <param name="productCode"></param>
-        /// <param name="productCount"></param>
-        /// <param name="singlePrice"></param>
-        /// <param name="volumePrice"></param>
-        /// <returns></returns>
-        public decimal Calculate(string productCode, uint productCount, decimal? singlePrice, IVolumePrice volumePrice)
+        public decimal Calculate(string productCode, uint productCount, decimal? singlePrice, decimal? volumePrice, uint? minVolume)
         {
             var result = new Price();
 
-            if (productCount >= volumePrice?.MinimalCount)
+            if (volumePrice != null && minVolume !=null && productCount >= minVolume)
             {
                 result.Value = productCount * volumePrice.Value;
             }

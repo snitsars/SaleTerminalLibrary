@@ -17,7 +17,6 @@ namespace Epam.Demo.SaleTerminalLibrary.Models
         /// Method for add product item to cart or increment count of product if 
         /// similar product in the cart
         /// </summary>
-        /// <param name="productCode"></param>
         public void AddProductItem(string productCode)
         {
             if (!products.ContainsKey(productCode))
@@ -34,7 +33,6 @@ namespace Epam.Demo.SaleTerminalLibrary.Models
         /// or remove product from cart if count less than one.
         /// This method can throw excetion if product code do not find.
         /// </summary>
-        /// <param name="productCode"></param>
         /// <exception cref="KeyNotFoundException">When try to remove not exist product code </exception>
         public void RemoveProductItem(string productCode)
         {
@@ -55,7 +53,6 @@ namespace Epam.Demo.SaleTerminalLibrary.Models
         /// <summary>
         /// Get enumerator for products, can be used in for eache loop
         /// </summary>
-        /// <returns></returns>
         public IEnumerator GetEnumerator()
         {
             return products.GetEnumerator();

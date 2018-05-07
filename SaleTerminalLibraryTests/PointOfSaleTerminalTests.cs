@@ -16,12 +16,12 @@ namespace Epam.Demo.SaleTerminalLibrary.Tests
             components = new UnityContainer();
 
             IPricing pricing = new Pricing();
-            pricing.SetPrice("A", 1.25m);
+            pricing.SetSinglePrice("A", 1.25m);
             pricing.SetVolumePrice("A", 1.00m, 3);
-            pricing.SetPrice("B", 4.25m);
-            pricing.SetPrice("C", 1.00m);
+            pricing.SetSinglePrice("B", 4.25m);
+            pricing.SetSinglePrice("C", 1.00m);
             pricing.SetVolumePrice("C", 0.833m, 6);
-            pricing.SetPrice("D", 0.75m);
+            pricing.SetSinglePrice("D", 0.75m);
 
             components.RegisterInstance(pricing);
             components.RegisterType<ICart, Cart>();
