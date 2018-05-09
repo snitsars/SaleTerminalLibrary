@@ -71,7 +71,7 @@ namespace Epam.Demo.SaleTerminalLibraryTests.Models
             Pricing pricing = new Pricing();
             pricing.SetVolumePrice(initialProduct, initialVolumePrice, initialMinimalCount);
 
-            VolumePrice productPrice = pricing.GetVolumePrice("D");
+            decimal? productPrice = pricing.GetVolumePrice("D");
             Assert.That(productPrice, Is.Null);
         }
 

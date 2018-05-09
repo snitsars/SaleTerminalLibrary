@@ -18,10 +18,10 @@ namespace Epam.Demo.SaleTerminalLibraryTests
 
             IPricing pricing = new Pricing();
             pricing.SetSinglePrice("A", 1.25m);
-            pricing.SetVolumePrice("A", 1.00m, 3);
+            pricing.SetPackPrice("A", 3.00m, 3);
             pricing.SetSinglePrice("B", 4.25m);
             pricing.SetSinglePrice("C", 1.00m);
-            pricing.SetVolumePrice("C", 0.833m, 6);
+            pricing.SetPackPrice("C", 5.0m, 6);
             pricing.SetSinglePrice("D", 0.75m);
 
             components.RegisterInstance(pricing);
@@ -72,7 +72,7 @@ namespace Epam.Demo.SaleTerminalLibraryTests
             terminal.Scan("C");
 
             var result = terminal.CalculateTotal();
-            Assert.That(expected, Is.EqualTo(result));
+            Assert.That(result, Is.EqualTo(expected));
         }
 
     }

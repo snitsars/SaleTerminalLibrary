@@ -1,86 +1,113 @@
-﻿using System.Collections.Generic;
-using Epam.Demo.SaleTerminalLibrary.Common;
+﻿using Epam.Demo.SaleTerminalLibrary.Common;
 using Epam.Demo.SaleTerminalLibrary.Interfaces;
+using System.Collections.Generic;
 
 namespace Epam.Demo.SaleTerminalLibrary.Models
 {
-    /// <summary>
-    /// Class contained information about products prices single and volume.
-    /// </summary>
     public class Pricing : IPricing
-    {
-        private readonly Dictionary<string, Price> prices = new Dictionary<string, Price>();
-        private readonly Dictionary<string, VolumePrice> volumePrices = new Dictionary<string, VolumePrice>();
+    { 
+        private readonly Dictionary<string, ProductInfo> prices = new Dictionary<string, ProductInfo>();
 
 
-        /// <summary>
-        /// Implementation of method SetSinglePrice of product
-        /// </summary>
         public void SetSinglePrice(string productCode, decimal productPrice)
         {
             if (prices.ContainsKey(productCode))
             {
-                prices[productCode].Value = productPrice;
+                prices[productCode].SinglePrice.Value = productPrice;
             }
             else
             {
-                Price productPriceInfo = new Price {Value = productPrice};
-                prices.Add(productCode, productPriceInfo);
+                ProductInfo productInfo = new ProductInfo();
+                productInfo.SinglePrice = new Price{ Value = productPrice };
+               
+                prices.Add(productCode, productInfo);
             }
         }
 
 
-        /// <summary>
-        /// Method for set volume price and minimal count of products
-        /// </summary>
         public void SetVolumePrice(string productCode, decimal productVolumePrice, uint minimalVolume)
         {
-            var productPriceInfo = new VolumePrice
+            var productPrice = new Price
             {
                 Value = productVolumePrice,
-                MinimalVolume = minimalVolume
             };
 
-            if (volumePrices.ContainsKey(productCode))
+            if (prices.ContainsKey(productCode))
             {
-                volumePrices[productCode] = productPriceInfo;
+                prices[productCode].VolumePrice = productPrice;
+                prices[productCode].Volume = minimalVolume;
             }
             else
             {
-                volumePrices.Add(productCode, productPriceInfo);
+                ProductInfo productInfo = new ProductInfo { VolumePrice = productPrice};
+                prices.Add(productCode, productInfo);
+            }
+        }
+
+        public void SetPackPrice(string productCode, decimal productPackPrice, uint packCount)
+        {
+            var productPrice = new Price
+            {
+                Value = productPackPrice,
+            };
+
+            if (prices.ContainsKey(productCode))
+            {
+                prices[productCode].PackPrice = productPrice;
+                prices[productCode].Volume = packCount;
+            }
+            else
+            {
+                ProductInfo productInfo = new ProductInfo { VolumePrice = productPrice };
+                prices.Add(productCode, productInfo);
             }
         }
 
 
-        /// <summary>
-        /// Method for get volume price and minimal count from products
-        /// </summary>
-        public VolumePrice GetVolumePrice(string productCode)
+        public decimal? GetVolumePrice(string productCode)
         {
-            volumePrices.TryGetValue(productCode, out var result);
+            decimal? result = null;
+            if(prices.ContainsKey(productCode))
+            {
+                result = prices[productCode].VolumePrice?.Value;
+            }
+            return result;
+        }
+
+        public uint GetMinVolume(string productCode)
+        {
+            uint result = 0;
+            if (prices.ContainsKey(productCode))
+            {
+                result = prices[productCode].Volume;
+            }
             return result;
         }
 
 
-        /// <summary>
-        /// Method for get price from products
-        /// </summary>
         public decimal? GetSinglePrice(string productCode)
         {
-            if (prices.TryGetValue(productCode, out var priceInfo))
+            decimal? result = null;
+            if (prices.ContainsKey(productCode))
             {
-                return priceInfo.Value;
+                result = prices[productCode].SinglePrice?.Value;
             }
-            return null;
+            return result;
         }
 
+        public decimal? GetPackPrice(string productCode)
+        {
+            decimal? result = null;
+            if (prices.ContainsKey(productCode))
+            {
+                result = prices[productCode].PackPrice?.Value;
+            }
+            return result;
+        }
 
-        /// <summary>
-        /// Determines whether the contains pricing the specified key 
-        /// </summary>
         public bool ContainsKey(string productCode)
         {
-            return prices.ContainsKey(productCode) || volumePrices.ContainsKey(productCode);
+            return prices.ContainsKey(productCode);
         }
     }
 }

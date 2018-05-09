@@ -1,35 +1,25 @@
-﻿using Epam.Demo.SaleTerminalLibrary.Interfaces;
+﻿using Epam.Demo.SaleTerminalLibrary.Common;
+using Epam.Demo.SaleTerminalLibrary.Interfaces;
 using System;
 using System.Collections.Generic;
 
 namespace Epam.Demo.SaleTerminalLibrary
 {
-    /// <summary>
-    /// Class of point-of-sale that can scan set of products 
-    /// and calculate summary price.
-    /// Should be initialized by the instances of interfaces ICart, IPricing, IPricingAlgorithm
-    /// </summary>
+
     public class PointOfSaleTerminal : IPointOfSaleTerminal
     {
         private const byte OptionSignAfterPoint = 2;
         private readonly ICart cart;
-        private readonly IPricingAlgorithm priceCalulationAlgorithm;
         private readonly IPricing prices;
 
 
-        public PointOfSaleTerminal(ICart cart, IPricing prices, IPricingAlgorithm priceCalulationAlgorithm)
+        public PointOfSaleTerminal(ICart cart, IPricing prices)
         {
             this.prices = prices;
-            this.priceCalulationAlgorithm = priceCalulationAlgorithm;
             this.cart = cart;
         }
 
 
-        /// <summary>
-        /// Scan method, takes product code as input parrameter
-        /// and add them to cart in case if product code available in pricing.
-        /// </summary>
-        /// <exception cref="KeyNotFoundException">In case if product code is missing in pricing</exception>
         public void Scan(string productCode)
         {
             if (!prices.ContainsKey(productCode))
@@ -40,10 +30,44 @@ namespace Epam.Demo.SaleTerminalLibrary
         }
 
 
-        /// <summary>
-        /// Calculate price of all products entire cart
-        /// taking into account volume and pack prices of products
-        /// </summary>
+        public decimal Calculate(string productCode, uint productCount, 
+            decimal? singlePrice, decimal? volumePrice, decimal? packPrice, uint? minVolume)
+        {
+            var result = new Price();
+
+            if (volumePrice != null && minVolume != null && productCount >= minVolume)
+            {
+                result.Value = productCount * volumePrice.Value;
+            }
+            else if (packPrice != null && minVolume != null && productCount >= minVolume)
+            {
+                GetPackPrice(productCount, singlePrice, packPrice.Value, minVolume.Value, result);
+            }
+            else
+            {
+                if (singlePrice != null)
+                    result.Value = productCount * singlePrice.Value;
+            }
+
+            return result.Value;
+        }
+
+        private void GetPackPrice(uint productCount, decimal? singlePrice, decimal packPrice, uint minVolume, Price result)
+        {
+            var countOfPack = productCount / minVolume;
+            var counOfFreeItems = productCount % minVolume;
+            if (counOfFreeItems > 0 && singlePrice != null)
+            {
+                result.Value += countOfPack * packPrice;
+                result.Value += counOfFreeItems * singlePrice.Value;
+            }
+            else
+            {
+                result.Value += countOfPack * packPrice;
+            }
+        }
+
+
         public decimal CalculateTotal()
         {
             decimal result = 0m;
@@ -51,7 +75,10 @@ namespace Epam.Demo.SaleTerminalLibrary
             {
                 var price = prices?.GetSinglePrice(product.Key);
                 var volumPrice = prices?.GetVolumePrice(product.Key);
-                result += priceCalulationAlgorithm.Calculate(product.Key, product.Value, price, volumPrice?.Value, volumPrice?.MinimalVolume);
+                var packPrice = prices?.GetPackPrice(product.Key);
+                var minimalVolume = prices?.GetMinVolume(product.Key);
+
+                result +=Calculate(product.Key, product.Value, price, volumPrice, packPrice, minimalVolume);
             }
             result = decimal.Round(result, OptionSignAfterPoint, MidpointRounding.AwayFromZero);
 

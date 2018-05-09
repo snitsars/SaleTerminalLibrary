@@ -34,14 +34,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Common\PriceVolumeTests.cs" />
     <Compile Include="Mocks\PackTerminal.cs" />
     <Compile Include="Mocks\VolumeTerminal.cs" />
     <Compile Include="Models\CartTests.cs" />
     <Compile Include="Common\PriceTests.cs" />
     <Compile Include="Models\PricingTests.cs" />
-    <Compile Include="Algorithms\PricingPackAlgorithmTests.cs" />
-    <Compile Include="Algorithms\PricingVolumeAlgorithmTests.cs" />
     <Compile Include="PackSaleTerminalTests.cs" />
     <Compile Include="PointOfSaleTerminalTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

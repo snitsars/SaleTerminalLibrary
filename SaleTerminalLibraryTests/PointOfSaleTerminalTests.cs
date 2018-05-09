@@ -30,14 +30,14 @@ namespace Epam.Demo.SaleTerminalLibrary.Tests
         [Test()]
         public void When_ScanProductCodeThatMissingInPricing_Expected_exception()
         {
-            IPointOfSaleTerminal terminal = new PointOfSaleTerminal(components.Resolve<ICart>(), components.Resolve<IPricing>(), null);
+            IPointOfSaleTerminal terminal = new PointOfSaleTerminal(components.Resolve<ICart>(), components.Resolve<IPricing>());
             Assert.Throws<KeyNotFoundException>(() => terminal.Scan("Dino"));
         }
 
         [Test()]
         public void When_ScanProductCodeThatExistInPricing_Expected_NoException()
         {
-            IPointOfSaleTerminal terminal = new PointOfSaleTerminal(components.Resolve<ICart>(), components.Resolve<IPricing>(), null);
+            IPointOfSaleTerminal terminal = new PointOfSaleTerminal(components.Resolve<ICart>(), components.Resolve<IPricing>());
             Assert.DoesNotThrow(() => terminal.Scan("A"));
         }
     }
