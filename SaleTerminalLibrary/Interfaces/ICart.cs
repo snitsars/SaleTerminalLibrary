@@ -8,6 +8,5 @@ namespace Epam.Demo.SaleTerminalLibrary.Interfaces
 
         void RemoveProductItem(string productCode);
 
-        new IEnumerator GetEnumerator();
     }
 }

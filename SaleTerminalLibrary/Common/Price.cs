@@ -6,7 +6,7 @@ namespace Epam.Demo.SaleTerminalLibrary.Common
     {
         private decimal value;
 
-        public virtual decimal Value
+        public decimal Value
         {
             get => value;
             set
