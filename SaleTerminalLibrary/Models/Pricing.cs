@@ -19,7 +19,7 @@ namespace Epam.Demo.SaleTerminalLibrary.Models
             {
                 ProductInfo productInfo = new ProductInfo();
                 productInfo.SinglePrice = new Price{ Value = productPrice };
-               
+                productInfo.PriceCounting = new RegularPriceCounting(productInfo);
                 prices.Add(productCode, productInfo);
             }
         }
@@ -40,8 +40,10 @@ namespace Epam.Demo.SaleTerminalLibrary.Models
             else
             {
                 ProductInfo productInfo = new ProductInfo { VolumePrice = productPrice};
+                productInfo.PriceCounting = new VolumeTotalCounting(productInfo);
                 prices.Add(productCode, productInfo);
             }
+            prices[productCode].PriceCounting = new VolumeTotalCounting(prices[productCode]);
         }
 
         public void SetPackPrice(string productCode, decimal productPackPrice, uint packCount)
@@ -61,6 +63,7 @@ namespace Epam.Demo.SaleTerminalLibrary.Models
                 ProductInfo productInfo = new ProductInfo { VolumePrice = productPrice };
                 prices.Add(productCode, productInfo);
             }
+            prices[productCode].PriceCounting = new PackPriceCounting(prices[productCode]);
         }
 
 
@@ -105,7 +108,17 @@ namespace Epam.Demo.SaleTerminalLibrary.Models
             return result;
         }
 
-        public bool ContainsKey(string productCode)
+        public ITotalCountingEx GetCountingAlgorithm(string productCode)
+        {
+            ITotalCountingEx result = null;
+            if (prices.ContainsKey(productCode))
+            {
+                result = prices[productCode].PriceCounting;
+            }
+            return result;
+        }
+
+        public bool Contains(string productCode)
         {
             return prices.ContainsKey(productCode);
         }

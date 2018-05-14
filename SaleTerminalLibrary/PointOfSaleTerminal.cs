@@ -11,20 +11,19 @@ namespace Epam.Demo.SaleTerminalLibrary
         private const byte OptionSignAfterPoint = 2;
         private readonly ICart cart;
         private readonly IPricing prices;
-        private readonly IAlgorithmTotalCounting totallPrice;
+        
 
 
         public PointOfSaleTerminal(ICart cart, IPricing prices)
         {
             this.prices = prices;
             this.cart = cart;
-            totallPrice = new TotallCounting();
         }
 
 
         public void Scan(string productCode)
         {
-            if (!prices.ContainsKey(productCode))
+            if (!prices.Contains(productCode))
             {
                 throw new KeyNotFoundException($"You are trying to scan product {productCode} missing in the pricing");
             }
@@ -38,12 +37,11 @@ namespace Epam.Demo.SaleTerminalLibrary
             decimal result = 0m;
             foreach (KeyValuePair<string, uint> product in cart)
             {
-                var price = prices?.GetSinglePrice(product.Key);
-                var volumPrice = prices?.GetVolumePrice(product.Key);
-                var packPrice = prices?.GetPackPrice(product.Key);
-                var minimalVolume = prices?.GetMinVolume(product.Key);
-
-                result += totallPrice.Calculate(product.Key, product.Value, price, volumPrice, packPrice, minimalVolume);
+                var algorithm = prices?.GetCountingAlgorithm(product.Key);
+                if (algorithm != null)
+                {
+                    result += algorithm.Calculate(product.Value);
+                }
             }
 
             result = decimal.Round(result, OptionSignAfterPoint, MidpointRounding.AwayFromZero);

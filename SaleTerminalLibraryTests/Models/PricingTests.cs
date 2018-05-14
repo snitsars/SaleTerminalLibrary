@@ -83,7 +83,7 @@ namespace Epam.Demo.SaleTerminalLibraryTests.Models
             Pricing pricing = new Pricing();
             pricing.SetSinglePrice(initialProduct, initialPrice);
 
-            Assert.That(true, Is.EqualTo(pricing.ContainsKey(initialProduct)));
+            Assert.That(true, Is.EqualTo(pricing.Contains(initialProduct)));
         }
 
         [Test()]
@@ -95,7 +95,7 @@ namespace Epam.Demo.SaleTerminalLibraryTests.Models
             Pricing pricing = new Pricing();
             pricing.SetVolumePrice(initialProduct, initialPrice, minimalVolume);
 
-            Assert.That(true, Is.EqualTo(pricing.ContainsKey(initialProduct)));
+            Assert.That(true, Is.EqualTo(pricing.Contains(initialProduct)));
         }
 
         [Test()]
@@ -103,7 +103,7 @@ namespace Epam.Demo.SaleTerminalLibraryTests.Models
         {
             Pricing pricing = new Pricing();
 
-            Assert.That(false, Is.EqualTo(pricing.ContainsKey("juice")));
+            Assert.That(false, Is.EqualTo(pricing.Contains("juice")));
         }
     }
 }

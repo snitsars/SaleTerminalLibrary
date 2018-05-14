@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaleTerminalLibraryTests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaleTerminalLibrary", "SaleTerminalLibrary\SaleTerminalLibrary.csproj", "{2A9C8F60-D58B-46A4-B6B7-170CDE5831C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsageExample", "UsageExample\UsageExample.csproj", "{7EEC16B9-0FFC-408A-BB43-3BA2A605246D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2A9C8F60-D58B-46A4-B6B7-170CDE5831C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A9C8F60-D58B-46A4-B6B7-170CDE5831C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A9C8F60-D58B-46A4-B6B7-170CDE5831C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EEC16B9-0FFC-408A-BB43-3BA2A605246D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EEC16B9-0FFC-408A-BB43-3BA2A605246D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EEC16B9-0FFC-408A-BB43-3BA2A605246D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EEC16B9-0FFC-408A-BB43-3BA2A605246D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

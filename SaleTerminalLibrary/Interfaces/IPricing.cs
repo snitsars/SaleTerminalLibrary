@@ -4,7 +4,7 @@ namespace Epam.Demo.SaleTerminalLibrary.Interfaces
 {
     public interface IPricing
     {
-        bool ContainsKey(string productCode);
+        bool Contains(string productCode);
         uint GetMinVolume(string productCode);
         decimal? GetSinglePrice(string productCode);
         decimal? GetVolumePrice(string productCode);
@@ -12,5 +12,6 @@ namespace Epam.Demo.SaleTerminalLibrary.Interfaces
         void SetSinglePrice(string productCode, decimal productPrice);
         void SetVolumePrice(string productCode, decimal productVolumePrice, uint minimalVolume);
         void SetPackPrice(string productCode, decimal productPackPrice, uint packCount);
+        ITotalCountingEx GetCountingAlgorithm(string productCode);
     }
 }
