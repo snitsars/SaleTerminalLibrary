@@ -67,47 +67,6 @@ namespace Epam.Demo.SaleTerminalLibrary.Models
         }
 
 
-        public decimal? GetVolumePrice(string productCode)
-        {
-            decimal? result = null;
-            if(prices.ContainsKey(productCode))
-            {
-                result = prices[productCode].VolumePrice?.Value;
-            }
-            return result;
-        }
-
-        public uint GetMinVolume(string productCode)
-        {
-            uint result = 0;
-            if (prices.ContainsKey(productCode))
-            {
-                result = prices[productCode].Volume;
-            }
-            return result;
-        }
-
-
-        public decimal? GetSinglePrice(string productCode)
-        {
-            decimal? result = null;
-            if (prices.ContainsKey(productCode))
-            {
-                result = prices[productCode].SinglePrice?.Value;
-            }
-            return result;
-        }
-
-        public decimal? GetPackPrice(string productCode)
-        {
-            decimal? result = null;
-            if (prices.ContainsKey(productCode))
-            {
-                result = prices[productCode].PackPrice?.Value;
-            }
-            return result;
-        }
-
         public ITotalCounting GetCountingAlgorithm(string productCode)
         {
             ITotalCounting result = null;
