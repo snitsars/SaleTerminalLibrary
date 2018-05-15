@@ -108,9 +108,9 @@ namespace Epam.Demo.SaleTerminalLibrary.Models
             return result;
         }
 
-        public ITotalCountingEx GetCountingAlgorithm(string productCode)
+        public ITotalCounting GetCountingAlgorithm(string productCode)
         {
-            ITotalCountingEx result = null;
+            ITotalCounting result = null;
             if (prices.ContainsKey(productCode))
             {
                 result = prices[productCode].PriceCounting;

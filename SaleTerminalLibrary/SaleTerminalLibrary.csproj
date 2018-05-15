@@ -71,7 +71,7 @@
     <Compile Include="Common\PriceCountingBase.cs" />
     <Compile Include="Common\RegularPriceCounting.cs" />
     <Compile Include="Interfaces\IPointOfSaleTerminal.cs" />
-    <Compile Include="Interfaces\ITotalCountingEx.cs" />
+    <Compile Include="Interfaces\ITotalCounting.cs" />
     <Compile Include="Models\CartLinq.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Common\Price.cs" />

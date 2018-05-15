@@ -12,6 +12,6 @@ namespace Epam.Demo.SaleTerminalLibrary.Interfaces
         void SetSinglePrice(string productCode, decimal productPrice);
         void SetVolumePrice(string productCode, decimal productVolumePrice, uint minimalVolume);
         void SetPackPrice(string productCode, decimal productPackPrice, uint packCount);
-        ITotalCountingEx GetCountingAlgorithm(string productCode);
+        ITotalCounting GetCountingAlgorithm(string productCode);
     }
 }

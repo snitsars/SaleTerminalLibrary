@@ -15,6 +15,6 @@ namespace Epam.Demo.SaleTerminalLibrary.Models
         public uint Volume { get; set; }
         public Price PackPrice { get; set; }
 
-        public ITotalCountingEx PriceCounting { get; set; }
+        public ITotalCounting PriceCounting { get; set; }
     }
 }

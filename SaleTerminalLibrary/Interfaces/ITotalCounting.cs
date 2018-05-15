@@ -1,6 +1,6 @@
 ﻿namespace Epam.Demo.SaleTerminalLibrary.Interfaces
 {
-    public interface ITotalCountingEx
+    public interface ITotalCounting
     {
         decimal Calculate(uint productCount);
     }

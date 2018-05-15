@@ -3,7 +3,7 @@ using Epam.Demo.SaleTerminalLibrary.Models;
 
 namespace Epam.Demo.SaleTerminalLibrary.Common
 {
-    public class VolumeTotalCounting: PriceCountingBase, ITotalCountingEx
+    public class VolumeTotalCounting: PriceCountingBase, ITotalCounting
     {
         public VolumeTotalCounting(ProductInfo productInfo) : base(productInfo)
         {
