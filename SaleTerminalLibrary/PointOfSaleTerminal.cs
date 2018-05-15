@@ -2,6 +2,7 @@
 using Epam.Demo.SaleTerminalLibrary.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Epam.Demo.SaleTerminalLibrary
 {
@@ -35,6 +36,7 @@ namespace Epam.Demo.SaleTerminalLibrary
         public decimal CalculateTotal()
         {
             decimal result = 0m;
+            
             foreach (KeyValuePair<string, uint> product in cart)
             {
                 var algorithm = prices?.GetCountingAlgorithm(product.Key);
@@ -43,7 +45,6 @@ namespace Epam.Demo.SaleTerminalLibrary
                     result += algorithm.Calculate(product.Value);
                 }
             }
-
             result = decimal.Round(result, OptionSignAfterPoint, MidpointRounding.AwayFromZero);
 
             return result;

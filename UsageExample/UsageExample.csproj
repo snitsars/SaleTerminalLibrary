@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{7EEC16B9-0FFC-408A-BB43-3BA2A605246D}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>UsageExample</RootNamespace>
+    <RootNamespace>Epam.Demo.SaleTerminalLibraryUsageExample</RootNamespace>
     <AssemblyName>UsageExample</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

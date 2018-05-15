@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Epam.Demo.SaleTerminalLibrary.Interfaces;
+﻿using Epam.Demo.SaleTerminalLibrary.Interfaces;
 using Epam.Demo.SaleTerminalLibrary.Models;
-using Unity;
 using Epam.Demo.SaleTerminalLibraryTests.Mocks;
+using System;
+using System.Threading.Tasks;
+using Unity;
 
-namespace UsageExample
+
+namespace Epam.Demo.SaleTerminalLibraryUsageExample
 {
     class UsageExampleProgram
     {
@@ -35,7 +33,7 @@ namespace UsageExample
             components.RegisterInstance(pricing);
 
             var terminal = components.Resolve<IPointOfSaleTerminal>();
-            Parallel.For(0, 99999999, (i, state) =>
+            Parallel.For(0, 99999, (i, state) =>
             {
 
                 terminal.Scan("AA");
@@ -65,7 +63,7 @@ namespace UsageExample
                 terminal.Scan("D");
             });
 
-            Console.WriteLine(terminal.CalculateTotal());
+            Console.WriteLine($"Total price: {terminal.CalculateTotal()}");
             Console.ReadKey();
         }
     }
